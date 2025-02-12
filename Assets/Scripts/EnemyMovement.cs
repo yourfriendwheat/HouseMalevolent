@@ -5,27 +5,28 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
-    private int currentWaypointIndex = 0;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
 
     void Start()
     {
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        MoveToNextWaypoint();
+        MoveToRandomWaypoint();
     }
 
-    void MoveToNextWaypoint()
+    void MoveToRandomWaypoint()
     {
         if (waypoints.Length == 0) return;
-        navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
+
+        int randomIndex = Random.Range(0, waypoints.Length);
+
+        navMeshAgent.SetDestination(waypoints[randomIndex].position);
     }
 
     void Update()
     {
         if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
-            MoveToNextWaypoint();
+            MoveToRandomWaypoint();
         }
     }
 }
