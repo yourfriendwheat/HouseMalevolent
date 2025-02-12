@@ -879,9 +879,9 @@ GameObject:
   - component: {fileID: 384904726}
   - component: {fileID: 384904725}
   - component: {fileID: 384904732}
-  - component: {fileID: 384904730}
   - component: {fileID: 384904733}
   - component: {fileID: 384904734}
+  - component: {fileID: 384904735}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -955,23 +955,6 @@ Transform:
   - {fileID: 452125465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &384904730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384904723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502a6fcf88b78ce4a813476ad70fa8de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 3
-  moveSpeed: 5
-  jumpStenght: 30
-  Player_Collision: {fileID: 384904734}
-  playerCamera: {fileID: 452125465}
 --- !u!54 &384904732
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1035,6 +1018,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+--- !u!114 &384904735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384904723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153a4246caadf8a4bb4e869d183aea03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 3
+  moveSpeed: 5
+  jumpStenght: 30
+  playerCollosion: {fileID: 384904734}
+  playerCamera: {fileID: 452125465}
 --- !u!1 &452125462
 GameObject:
   m_ObjectHideFlags: 0

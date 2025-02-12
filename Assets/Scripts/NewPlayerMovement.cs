@@ -11,9 +11,11 @@ public class NewPlayerMovement : MonoBehaviour
     private float xRotation = 0;
     public float moveSpeed = 5f;
     public float jumpStenght = 30f;
+
     public Player_Collision playerCollosion;
     public Transform playerCamera;
     private Rigidbody rb;
+
     private bool isGrounded;
 
     private Vector3 moveVector;
@@ -22,7 +24,6 @@ public class NewPlayerMovement : MonoBehaviour
     InputSystem inputSystem;
 
 
-    // Start is called before the first frame update
     private void Awake()
     {
         playerCamera.localRotation = Quaternion.Euler(0f, 0f, 0f);
@@ -43,7 +44,6 @@ public class NewPlayerMovement : MonoBehaviour
 
         // Lock the cursor to the center of the screen and make it invisible
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
@@ -52,7 +52,6 @@ public class NewPlayerMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         isGrounded = playerCollosion.isGrounded;
