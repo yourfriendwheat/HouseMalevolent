@@ -414,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 10362217}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.082, y: -0.0014866, z: -41.66}
+  m_LocalPosition: {x: -11.082, y: 2.56, z: -41.66}
   m_LocalScale: {x: 15.865708, y: 15.865708, z: 15.865708}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4009,13 +4009,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -2.5}
-  m_EndPoint: {x: 0, y: 0, z: 2.5}
-  m_Width: 20.29
+  m_StartPoint: {x: 0, y: 2.52, z: -2.38}
+  m_EndPoint: {x: 0, y: 0.49, z: 2.4}
+  m_Width: 3.23
   m_CostModifier: -1
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
-  m_Area: 0
+  m_Area: 2
 --- !u!4 &1614269038
 Transform:
   m_ObjectHideFlags: 0
