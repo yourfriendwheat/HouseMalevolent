@@ -2128,6 +2128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5300012244927201610, guid: fbff4471df21bf64ea0bd6c9c9859d58, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6025065564004507554, guid: fbff4471df21bf64ea0bd6c9c9859d58, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
@@ -2718,6 +2722,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4346211746316910323, guid: 5c9be93d6f6d6a74092dd02020d4433f, type: 3}
+      propertyPath: isGrounded
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7345140641833647407, guid: 5c9be93d6f6d6a74092dd02020d4433f, type: 3}
       propertyPath: m_Name
       value: Player

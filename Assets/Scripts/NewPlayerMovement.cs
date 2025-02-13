@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class NewPlayerMovement : MonoBehaviour
 {
-
     public float mouseSensitivity = 3f;
     private float xRotation = 0;
     public float moveSpeed = 5f;
@@ -35,6 +34,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     void Start()
     {
+
         inputSystem.OnGround.Enable();
         inputSystem.OnGround.Jump.performed += Jump;
         inputSystem.OnGround.Movement.performed += Movement;
@@ -95,4 +95,5 @@ public class NewPlayerMovement : MonoBehaviour
 
         transform.Rotate(Vector3.up * mouseX);
     }
+
 }
