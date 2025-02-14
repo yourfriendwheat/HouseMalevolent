@@ -297,7 +297,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f65b2c56-fb5f-4799-8266-b3dcea2343bb"",
-                    ""path"": ""<XInputController>/rightStick/right"",
+                    ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

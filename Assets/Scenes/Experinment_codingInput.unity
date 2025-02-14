@@ -2735,6 +2735,14 @@ PrefabInstance:
       propertyPath: isGrounded
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6921635497164079054, guid: 5c9be93d6f6d6a74092dd02020d4433f, type: 3}
+      propertyPath: runSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921635497164079054, guid: 5c9be93d6f6d6a74092dd02020d4433f, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7345140641833647407, guid: 5c9be93d6f6d6a74092dd02020d4433f, type: 3}
       propertyPath: m_Name
       value: Player
