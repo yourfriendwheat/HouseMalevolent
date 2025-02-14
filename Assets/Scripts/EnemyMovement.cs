@@ -44,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
 
         // Check if the player is within detection range using the EnemyTrigger component
         bool isInRange = tiggerPlayer.m_IsPlayerInRange;
-        
+
         // If the player is within detection range, start chasing
         if (isInRange)
         {

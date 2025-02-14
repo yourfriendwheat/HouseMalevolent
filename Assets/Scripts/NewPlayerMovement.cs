@@ -10,14 +10,19 @@ public class NewPlayerMovement : MonoBehaviour
     private float xRotation = 0;
     public float moveSpeed = 5f;
     public float jumpStenght = 30f;
+    public float runSpeed = 4f;
+
 
     public Player_Collision playerCollosion;
     public Transform playerCamera;
     private Rigidbody rb;
 
     private bool isGrounded;
+    private bool isRunning = false;
 
-    private Vector3 moveVector;
+    private Vector3 runVector;
+
+    public Vector3 moveVector;
 
     //ActionMap
     InputSystem inputSystem;
@@ -39,6 +44,8 @@ public class NewPlayerMovement : MonoBehaviour
         inputSystem.OnGround.Jump.performed += Jump;
         inputSystem.OnGround.Movement.performed += Movement;
         inputSystem.OnGround.Movement.canceled += Movement;
+        inputSystem.OnGround.Running.performed += OnRunning;
+        inputSystem.OnGround.Running.canceled += OnRunningCanceled;
 
         inputSystem.OnGround.Look.performed += MouseLook;
 
@@ -94,6 +101,26 @@ public class NewPlayerMovement : MonoBehaviour
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private void OnRunning(InputAction.CallbackContext ctx)
+    {
+        if (!isRunning)
+        {
+            isRunning = true;
+            moveSpeed = runSpeed;
+            Debug.Log("isrunning");
+        }
+    }
+
+    private void OnRunningCanceled(InputAction.CallbackContext ctx)
+    {
+        if (isRunning)
+        {
+            isRunning = false;
+            moveSpeed = 5f;
+            Debug.Log("isnotrunning");
+        }
     }
 
 }

@@ -11,6 +11,11 @@ public class Player_Collision : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player was hit");
+        }
     }
 
     private void OnCollisionExit(Collision collision)
