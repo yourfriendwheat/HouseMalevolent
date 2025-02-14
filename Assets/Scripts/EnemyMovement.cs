@@ -4,55 +4,88 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    //Array of waypoints for the enemy to patrol
     [SerializeField]
     private Transform[] waypoints;
 
     [SerializeField]
     LayerMask playerLayer;
 
+    //Range within which the enemy can attack the player
     [SerializeField]
-    float sightRange = 10f;
+    float attackRange = 5f;
 
 
     private GameObject player;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
     private bool isChasing;
+    private bool isInRange;
+
+    private EnemyTrigger tiggerPlayer;
+
 
     void Start()
     {
+        // Initialize NavMeshAgent and find the player object
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.Find("Player");
+
+        // Start patrolling by moving to a random waypoint
         MoveToRandomWaypoint();
+
+        // Get the EnemyTrigger component attached to a child object
+        tiggerPlayer = this.GetComponentInChildren<EnemyTrigger>();
     }
 
     void Update()
     {
-        bool playerInSight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
+        // Check if the player is within attack range using a Physics sphere check
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if (playerInSight)
+        // Check if the player is within detection range using the EnemyTrigger component
+        bool isInRange = tiggerPlayer.m_IsPlayerInRange;
+        
+        // If the player is within detection range, start chasing
+        if (isInRange)
         {
             isChasing = true;
             Chase();
+
+            // If the player is also within attack range, attack
+            if (playerInAttackRange)
+            {
+                Attack();
+            }
+
         }
+
+        // If the enemy was chasing but the player is no longer in range, stop chasing and return to patrolling
         else if (isChasing)
         {
             isChasing = false;
             MoveToRandomWaypoint();
+
         }
+
+        // If the enemy is not chasing and has reached its current waypoint, move to a new random waypoint
         else if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
         {
             MoveToRandomWaypoint();
         }
+
     }
 
+    // Moves the enemy to a random waypoint from the waypoints array
     void MoveToRandomWaypoint()
     {
         if (waypoints.Length == 0) return;
 
+        // Choose a random waypoint and set it as the destination
         int randomIndex = Random.Range(0, waypoints.Length);
         navMeshAgent.SetDestination(waypoints[randomIndex].position);
     }
 
+    // Makes the enemy chase the player by setting the player's position as the destination
     void Chase()
     {
         if (player != null)
@@ -61,9 +94,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-/*    private void OnDrawGizmosSelected()
+    void Attack()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-    }*/
+        Debug.Log("HE GOT U");
+    }
+
 }
