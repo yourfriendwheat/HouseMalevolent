@@ -2076,6 +2076,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &642149033 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8186986260982050188, guid: 5c9be93d6f6d6a74092dd02020d4433f, type: 3}
+  m_PrefabInstance: {fileID: 943672671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &679494094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2132,6 +2137,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5402766381972431472, guid: fbff4471df21bf64ea0bd6c9c9859d58, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 642149033}
     - target: {fileID: 6025065564004507554, guid: fbff4471df21bf64ea0bd6c9c9859d58, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
