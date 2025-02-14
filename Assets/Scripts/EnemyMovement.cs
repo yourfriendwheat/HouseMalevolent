@@ -20,12 +20,16 @@ public class EnemyMovement : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
     private bool isChasing;
     private bool isInRange;
+    private bool lose;
 
     private EnemyTrigger tiggerPlayer;
 
+    public GameManager GameManager;
 
     void Start()
     {
+        lose = false;
+
         // Initialize NavMeshAgent and find the player object
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.Find("Player");
@@ -35,6 +39,8 @@ public class EnemyMovement : MonoBehaviour
 
         // Get the EnemyTrigger component attached to a child object
         tiggerPlayer = this.GetComponentInChildren<EnemyTrigger>();
+
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -54,6 +60,7 @@ public class EnemyMovement : MonoBehaviour
             // If the player is also within attack range, attack
             if (playerInAttackRange)
             {
+                lose = true;
                 Attack();
             }
 
@@ -94,9 +101,13 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void Attack()
+    //Calls the Gameover function
+    public void Attack()
     {
-        Debug.Log("HE GOT U");
+        if(lose == true)
+        {
+            GameManager.gameOver();
+        }
     }
 
 }
