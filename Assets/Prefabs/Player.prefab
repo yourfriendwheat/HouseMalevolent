@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 794424685263292616}
   - component: {fileID: 4346211746316910323}
   - component: {fileID: 6921635497164079054}
+  - component: {fileID: 5677101752109912774}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -260,3 +261,15 @@ MonoBehaviour:
   jumpStenght: 30
   playerCollosion: {fileID: 4346211746316910323}
   playerCamera: {fileID: 5551902246991956813}
+--- !u!114 &5677101752109912774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345140641833647407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9de3c4b5918057478f7fa7c9c9720a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -53,6 +53,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""979cc599-a676-4168-8e88-1b584af1b613"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -264,6 +273,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""664f43e9-455e-4c8f-8590-1de194c5717a"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -275,6 +295,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_OnGround_Movement = m_OnGround.FindAction("Movement", throwIfNotFound: true);
         m_OnGround_Jump = m_OnGround.FindAction("Jump", throwIfNotFound: true);
         m_OnGround_Look = m_OnGround.FindAction("Look", throwIfNotFound: true);
+        m_OnGround_Crouch = m_OnGround.FindAction("Crouch", throwIfNotFound: true);
     }
 
     ~@InputSystem()
@@ -344,6 +365,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnGround_Movement;
     private readonly InputAction m_OnGround_Jump;
     private readonly InputAction m_OnGround_Look;
+    private readonly InputAction m_OnGround_Crouch;
     public struct OnGroundActions
     {
         private @InputSystem m_Wrapper;
@@ -351,6 +373,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_OnGround_Movement;
         public InputAction @Jump => m_Wrapper.m_OnGround_Jump;
         public InputAction @Look => m_Wrapper.m_OnGround_Look;
+        public InputAction @Crouch => m_Wrapper.m_OnGround_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_OnGround; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -369,6 +392,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
         }
 
         private void UnregisterCallbacks(IOnGroundActions instance)
@@ -382,6 +408,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
         }
 
         public void RemoveCallbacks(IOnGroundActions instance)
@@ -404,5 +433,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
 }
