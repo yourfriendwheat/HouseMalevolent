@@ -15,12 +15,13 @@ public class GameManager : MonoBehaviour
 
     public EnemyMovement EnemyMovement;
 
-    public float Timer;
+    private float Timer;
 
     public TextMeshProUGUI winText;
     public TextMeshProUGUI loseText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI pauseText;
+    public TextMeshProUGUI gameText;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +30,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         PlayerWon = false;
         isPlayerAlive = true; 
-        
+
         winText.gameObject.SetActive(false); 
         loseText.gameObject.SetActive(false);
         pauseText.gameObject.SetActive(false); 
+        gameText.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         loseText.gameObject.SetActive(true);
+        gameText.gameObject.SetActive(false);
         isPlayerAlive = false;
         Time.timeScale = 0;
     }
@@ -73,6 +76,7 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         Time.timeScale = 0;
+        gameText.gameObject.SetActive(false);
         winText.gameObject.SetActive(true);
         PlayerWon = true;   
     }
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             Time.timeScale = 0;
+            gameText.gameObject.SetActive(false);
             pauseText.gameObject.SetActive(true);
         }
     }
@@ -93,6 +98,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.U))
         {
             Time.timeScale = 1;
+            gameText.gameObject.SetActive(true);
             pauseText.gameObject.SetActive(false);
         }
     }
