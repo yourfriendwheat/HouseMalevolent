@@ -11,12 +11,20 @@ public class GameManager : MonoBehaviour
 {
 
     public bool isPlayerAlive;
+
+    public bool PlayerWon;
     public EnemyMovement EnemyMovement;
+
+    public TextMeshProUGUI winText;
+    public TextMeshProUGUI loseText;
 
     // Start is called before the first frame update
     void Start()
     {
-        isPlayerAlive = true;  
+        PlayerWon = false;
+        isPlayerAlive = true; 
+        winText.gameObject.SetActive(false); 
+        loseText.gameObject.SetActive(false); 
     }
 
     // Update is called once per frame
@@ -28,9 +36,16 @@ public class GameManager : MonoBehaviour
 
     public void gameOver()
     {
-        //Debug.Log("You Lose! Press R to restart");
+        loseText.gameObject.SetActive(true);
         isPlayerAlive = false;
         Time.timeScale = 0;
+    }
+
+    public void Win()
+    {
+        Time.timeScale = 0;
+        winText.gameObject.SetActive(true);
+        PlayerWon = true;   
     }
 
     void restartGame() //Work in progress
@@ -38,10 +53,17 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && isPlayerAlive == false)
         {
             Time.timeScale = 1;
+            SceneManager.LoadScene("Experinment_codingInput");
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space) && PlayerWon == true)
+        {
+            SceneManager.LoadScene("MainMenu_Testing");
+            Time.timeScale = 1;
         }
     }
 
-    void killGame() //Work in progress
+    void killGame()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_Collision : MonoBehaviour
@@ -12,9 +13,9 @@ public class Player_Collision : MonoBehaviour
             isGrounded = true;
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Key"))
         {
-            Debug.Log("Player was hit");
+            GameObject.Find("GameManager").GetComponent<GameManager>().Win();
         }
     }
 
