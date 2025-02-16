@@ -11,16 +11,21 @@ public class GameManager : MonoBehaviour
 {
 
     public bool isPlayerAlive;
-
     public bool PlayerWon;
+
     public EnemyMovement EnemyMovement;
+
+    public float Timer;
 
     public TextMeshProUGUI winText;
     public TextMeshProUGUI loseText;
+    public TextMeshProUGUI timerText;
 
     // Start is called before the first frame update
     void Start()
     {
+        Timer = 90.0f;
+        Time.timeScale = 1;
         PlayerWon = false;
         isPlayerAlive = true; 
         winText.gameObject.SetActive(false); 
@@ -30,6 +35,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timerText.text = "Time:" + (int)Timer;
+        Timer -= Time.deltaTime;
+
+        if (Timer <= 0.0f)
+        {
+            gameOver();
+        }
+
         restartGame();
         killGame();
     }
@@ -52,14 +65,12 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && isPlayerAlive == false)
         {
-            Time.timeScale = 1;
             SceneManager.LoadScene("Experinment_codingInput");
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && PlayerWon == true)
         {
             SceneManager.LoadScene("MainMenu_Testing");
-            Time.timeScale = 1;
         }
     }
 
