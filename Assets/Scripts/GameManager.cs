@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI winText;
     public TextMeshProUGUI loseText;
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI pauseText;
 
     // Start is called before the first frame update
     void Start()
@@ -28,14 +29,19 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         PlayerWon = false;
         isPlayerAlive = true; 
+        
         winText.gameObject.SetActive(false); 
-        loseText.gameObject.SetActive(false); 
+        loseText.gameObject.SetActive(false);
+        pauseText.gameObject.SetActive(false); 
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Displays the timer
         timerText.text = "Time:" + (int)Timer;
+
+        //Updates the timer
         Timer -= Time.deltaTime;
 
         if (Timer <= 0.0f)
@@ -43,10 +49,19 @@ public class GameManager : MonoBehaviour
             gameOver();
         }
 
+
+        //If statement that allows the player to pause/unpause the game while playing it
+        if(isPlayerAlive == true && PlayerWon == false)
+        {
+            PauseGame();
+            Unpausegame();
+        }
+
         restartGame();
         killGame();
     }
 
+    //Lose function 
     public void gameOver()
     {
         loseText.gameObject.SetActive(true);
@@ -54,11 +69,32 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    //Win function 
     public void Win()
     {
         Time.timeScale = 0;
         winText.gameObject.SetActive(true);
         PlayerWon = true;   
+    }
+
+    //Function that pauses the game
+    void PauseGame()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Time.timeScale = 0;
+            pauseText.gameObject.SetActive(true);
+        }
+    }
+
+    //Function that unpauses the game
+    void Unpausegame()
+    {
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            Time.timeScale = 1;
+            pauseText.gameObject.SetActive(false);
+        }
     }
 
     void restartGame() //Work in progress
