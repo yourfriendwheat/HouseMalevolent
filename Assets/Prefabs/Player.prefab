@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5677101752109912774}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,8 +259,10 @@ MonoBehaviour:
   mouseSensitivity: 10
   moveSpeed: 5
   jumpStenght: 30
+  runSpeed: 4
   playerCollosion: {fileID: 4346211746316910323}
   playerCamera: {fileID: 5551902246991956813}
+  moveVector: {x: 0, y: 0, z: 0}
 --- !u!114 &5677101752109912774
 MonoBehaviour:
   m_ObjectHideFlags: 0

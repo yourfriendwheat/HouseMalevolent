@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +23,16 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pauseText;
     public TextMeshProUGUI gameText;
 
+    private NewPlayerMovement NewPlayerMovement;
+
+    public InputSystem UIsystem;
+
+    private void Awake()
+    {
+                UIsystem = new InputSystem();
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +45,11 @@ public class GameManager : MonoBehaviour
         loseText.gameObject.SetActive(false);
         pauseText.gameObject.SetActive(false); 
         gameText.gameObject.SetActive(true);
+
+        NewPlayerMovement = GameObject.Find("Player").GetComponent<NewPlayerMovement>();
+
+        OnEnable();
+
     }
 
     // Update is called once per frame
@@ -55,11 +70,9 @@ public class GameManager : MonoBehaviour
         //If statement that allows the player to pause/unpause the game while playing it
         if(isPlayerAlive == true && PlayerWon == false)
         {
-            PauseGame();
+            //PauseGame();
             Unpausegame();
         }
-
-        restartGame();
         killGame();
     }
 
@@ -81,16 +94,7 @@ public class GameManager : MonoBehaviour
         PlayerWon = true;   
     }
 
-    //Function that pauses the game
-    void PauseGame()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Time.timeScale = 0;
-            gameText.gameObject.SetActive(false);
-            pauseText.gameObject.SetActive(true);
-        }
-    }
+
 
     //Function that unpauses the game
     void Unpausegame()
@@ -103,19 +107,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void restartGame() //Work in progress
-    {
-        if (Input.GetKeyDown(KeyCode.R) && isPlayerAlive == false)
-        {
-            SceneManager.LoadScene("Experinment_codingInput");
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space) && PlayerWon == true)
-        {
-            SceneManager.LoadScene("MainMenu_Testing");
-        }
-    }
-
     void killGame()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -123,5 +114,50 @@ public class GameManager : MonoBehaviour
             Application.Quit();
             Debug.Log("Application has closed in this build");
         }
+    }
+
+    //Function that pauses the game
+    private void PauesMenu(InputAction.CallbackContext ctx)
+    {
+        Time.timeScale = 0;
+        gameText.gameObject.SetActive(false);
+        pauseText.gameObject.SetActive(true);
+    }
+
+    private void restartGame(InputAction.CallbackContext ctx)
+    {
+        if (isPlayerAlive == false)
+        {
+            NewPlayerMovement.OnDisable();
+            SceneManager.LoadScene("Experinment_codingInput");
+            OnDisable();
+
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && PlayerWon == true)
+        {
+            SceneManager.LoadScene("MainMenu_Testing");
+        }
+    }
+
+
+    private void OnEnable()
+    {
+        UIsystem.UI.Enable();
+
+        UIsystem.UI.Restart.performed += restartGame;
+        UIsystem.UI.Restart.canceled += restartGame;
+        UIsystem.UI.Pause.performed += PauesMenu;
+        UIsystem.UI.Pause.canceled += PauesMenu;
+
+    }
+
+    private void OnDisable()
+    {
+        UIsystem.UI.Disable();
+
+        UIsystem.UI.Restart.performed -= restartGame;
+        UIsystem.UI.Restart.canceled -= restartGame;
+        UIsystem.UI.Pause.performed -= PauesMenu;
+        UIsystem.UI.Pause.canceled -= PauesMenu;
     }
 }

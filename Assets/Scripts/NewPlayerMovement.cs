@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 
 public class NewPlayerMovement : MonoBehaviour
@@ -25,30 +26,26 @@ public class NewPlayerMovement : MonoBehaviour
     public Vector3 moveVector;
 
     //ActionMap
-    InputSystem inputSystem;
+    public InputSystem inputSystem;
+    public GameManager gameManager;
+
+    private PlayerCrouch crouch;
 
 
-    private void Awake()
+    public void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerCamera.localRotation = Quaternion.Euler(0f, 0f, 0f);
         transform.rotation = Quaternion.identity;
         rb = this.transform.GetComponent<Rigidbody>();
         playerCollosion = GetComponent<Player_Collision>();
         inputSystem = new InputSystem();
+        crouch = GetComponent<PlayerCrouch>();
     }
 
     void Start()
     {
-
-        inputSystem.OnGround.Enable();
-        inputSystem.OnGround.Jump.performed += Jump;
-        inputSystem.OnGround.Movement.performed += Movement;
-        inputSystem.OnGround.Movement.canceled += Movement;
-        inputSystem.OnGround.Running.performed += OnRunning;
-        inputSystem.OnGround.Running.canceled += OnRunningCanceled;
-
-        inputSystem.OnGround.Look.performed += MouseLook;
-
+        OnEnable();
         // Lock the cursor to the center of the screen and make it invisible
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -123,4 +120,33 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnDisable()
+    {
+        if (inputSystem != null)
+        {
+            inputSystem.OnGround.Disable();
+            crouch.OnDisable();
+
+            inputSystem.OnGround.Jump.performed -= Jump;
+            inputSystem.OnGround.Movement.performed -= Movement;
+            inputSystem.OnGround.Movement.canceled -= Movement;
+            inputSystem.OnGround.Running.performed -= OnRunning;
+            inputSystem.OnGround.Running.canceled -= OnRunningCanceled;
+            inputSystem.OnGround.Look.performed -= MouseLook;
+        }
+    }
+
+    private void OnEnable()
+    {
+        inputSystem.OnGround.Enable();
+        crouch.OnEnable();
+
+        inputSystem.OnGround.Jump.performed += Jump;
+        inputSystem.OnGround.Movement.performed += Movement;
+        inputSystem.OnGround.Movement.canceled += Movement;
+        inputSystem.OnGround.Running.performed += OnRunning;
+        inputSystem.OnGround.Running.canceled += OnRunningCanceled;
+
+        inputSystem.OnGround.Look.performed += MouseLook;
+    }
 }

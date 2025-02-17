@@ -12,17 +12,17 @@ public class PlayerCrouch : MonoBehaviour
     private Vector3 playerScale = new Vector3(1, 1f, 1);   // Original scale
     private bool isCrouching = false; // Flag to track crouching state
 
+    private NewPlayerMovement NewPlayerMovement;
+
     private void Awake()
     {
         inputSystem = new InputSystem();
+        NewPlayerMovement = GetComponent<NewPlayerMovement>();
     }
 
     void Start()
     {
-        // Enable the input system and subscribe to the crouch action
-        inputSystem.OnGround.Enable();
-        inputSystem.OnGround.Crouch.performed += OnCrouchPerformed;
-        inputSystem.OnGround.Crouch.canceled += OnCrouchCanceled;
+        OnEnable();
     }
 
     private void OnCrouchPerformed(InputAction.CallbackContext ctx)
@@ -45,5 +45,20 @@ public class PlayerCrouch : MonoBehaviour
             transform.localScale = playerScale;
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         }
+    }
+
+    public void OnDisable()
+    {
+        inputSystem.OnGround.Disable();
+        inputSystem.OnGround.Crouch.performed -= OnCrouchPerformed;
+        inputSystem.OnGround.Crouch.canceled -= OnCrouchPerformed;
+
+    }
+
+    public void OnEnable()
+    {
+        inputSystem.OnGround.Enable();
+        inputSystem.OnGround.Crouch.performed += OnCrouchPerformed;
+        inputSystem.OnGround.Crouch.canceled += OnCrouchCanceled;
     }
 }
