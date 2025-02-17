@@ -88,7 +88,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""541a56ee-07d7-49a8-b543-eb505825ee84"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -350,6 +350,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""64687ee4-1693-4213-8323-6cb4cab92841"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -396,6 +405,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ff18945-c213-4162-ad25-e4a6b0887150"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd5e6eec-f377-4e6f-9415-41d040f31f9b"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -413,6 +444,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Restart = m_UI.FindAction("Restart", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        m_UI_SelectButton = m_UI.FindAction("SelectButton", throwIfNotFound: true);
     }
 
     ~@InputSystem()
@@ -560,12 +592,14 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Restart;
     private readonly InputAction m_UI_Pause;
+    private readonly InputAction m_UI_SelectButton;
     public struct UIActions
     {
         private @InputSystem m_Wrapper;
         public UIActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Restart => m_Wrapper.m_UI_Restart;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
+        public InputAction @SelectButton => m_Wrapper.m_UI_SelectButton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -581,6 +615,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @SelectButton.started += instance.OnSelectButton;
+            @SelectButton.performed += instance.OnSelectButton;
+            @SelectButton.canceled += instance.OnSelectButton;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -591,6 +628,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @SelectButton.started -= instance.OnSelectButton;
+            @SelectButton.performed -= instance.OnSelectButton;
+            @SelectButton.canceled -= instance.OnSelectButton;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -620,5 +660,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         void OnRestart(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnSelectButton(InputAction.CallbackContext context);
     }
 }

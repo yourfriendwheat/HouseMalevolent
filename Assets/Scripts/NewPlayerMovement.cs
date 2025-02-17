@@ -136,7 +136,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         inputSystem.OnGround.Enable();
         crouch.OnEnable();

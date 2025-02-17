@@ -5,11 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
-
     public bool isPlayerAlive;
     public bool PlayerWon;
 
@@ -26,11 +24,13 @@ public class GameManager : MonoBehaviour
     private NewPlayerMovement NewPlayerMovement;
 
     public InputSystem UIsystem;
+    public GameObject PauseMenu;
+
+    private bool isPaused = false; // Track whether the game is paused
 
     private void Awake()
     {
-                UIsystem = new InputSystem();
-
+        UIsystem = new InputSystem();
     }
 
     // Start is called before the first frame update
@@ -39,44 +39,40 @@ public class GameManager : MonoBehaviour
         Timer = 90.0f;
         Time.timeScale = 1;
         PlayerWon = false;
-        isPlayerAlive = true; 
+        isPlayerAlive = true;
 
-        winText.gameObject.SetActive(false); 
+        winText.gameObject.SetActive(false);
         loseText.gameObject.SetActive(false);
-        pauseText.gameObject.SetActive(false); 
+        pauseText.gameObject.SetActive(false);
         gameText.gameObject.SetActive(true);
 
         NewPlayerMovement = GameObject.Find("Player").GetComponent<NewPlayerMovement>();
 
         OnEnable();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Displays the timer
-        timerText.text = "Time:" + (int)Timer;
-
-        //Updates the timer
-        Timer -= Time.deltaTime;
-
-        if (Timer <= 0.0f)
+        if (!isPaused)
         {
-            gameOver();
-        }
+            // Displays the timer
+            timerText.text = "Time:" + (int)Timer;
 
+            // Updates the timer
+            Timer -= Time.deltaTime;
 
-        //If statement that allows the player to pause/unpause the game while playing it
-        if(isPlayerAlive == true && PlayerWon == false)
-        {
-            //PauseGame();
-            Unpausegame();
+            if (Timer <= 0.0f)
+            {
+                gameOver();
+            }
+
+            killGame();
+
         }
-        killGame();
     }
 
-    //Lose function 
+    // Lose function 
     public void gameOver()
     {
         loseText.gameObject.SetActive(true);
@@ -85,25 +81,71 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    //Win function 
+    // Win function 
     public void Win()
     {
         Time.timeScale = 0;
         gameText.gameObject.SetActive(false);
         winText.gameObject.SetActive(true);
-        PlayerWon = true;   
+        PlayerWon = true;
+    }
+
+    // Function that unpauses the game
+    public void Unpausegame()
+    {
+        Time.timeScale = 1;
+        gameText.gameObject.SetActive(true);
+        pauseText.gameObject.SetActive(false);
+        PauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isPaused = false;
+        NewPlayerMovement.OnEnable();
+
+    }
+
+    // Function that pauses the game
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        gameText.gameObject.SetActive(false);
+        pauseText.gameObject.SetActive(true);
+        PauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        isPaused = true;
+        NewPlayerMovement.OnDisable();
+    }
+
+    // Toggle pause state
+    private void TogglePause()
+    {
+        if (isPaused)
+        {
+            Unpausegame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu_Testing");
     }
 
 
-
-    //Function that unpauses the game
-    void Unpausegame()
+    private void RestartGame(InputAction.CallbackContext ctx)
     {
-        if(Input.GetKeyDown(KeyCode.U))
+        if (!isPlayerAlive)
         {
-            Time.timeScale = 1;
-            gameText.gameObject.SetActive(true);
-            pauseText.gameObject.SetActive(false);
+            NewPlayerMovement.OnDisable();
+            SceneManager.LoadScene("Experinment_codingInput");
+        }
+        else if (PlayerWon && Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("MainMenu_Testing");
         }
     }
 
@@ -116,48 +158,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Function that pauses the game
-    private void PauesMenu(InputAction.CallbackContext ctx)
-    {
-        Time.timeScale = 0;
-        gameText.gameObject.SetActive(false);
-        pauseText.gameObject.SetActive(true);
-    }
-
-    private void restartGame(InputAction.CallbackContext ctx)
-    {
-        if (isPlayerAlive == false)
-        {
-            NewPlayerMovement.OnDisable();
-            SceneManager.LoadScene("Experinment_codingInput");
-            OnDisable();
-
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && PlayerWon == true)
-        {
-            SceneManager.LoadScene("MainMenu_Testing");
-        }
-    }
-
-
     private void OnEnable()
     {
         UIsystem.UI.Enable();
 
-        UIsystem.UI.Restart.performed += restartGame;
-        UIsystem.UI.Restart.canceled += restartGame;
-        UIsystem.UI.Pause.performed += PauesMenu;
-        UIsystem.UI.Pause.canceled += PauesMenu;
-
+        UIsystem.UI.Restart.performed += RestartGame;
+        UIsystem.UI.Pause.performed += ctx => TogglePause();
     }
 
     private void OnDisable()
     {
         UIsystem.UI.Disable();
 
-        UIsystem.UI.Restart.performed -= restartGame;
-        UIsystem.UI.Restart.canceled -= restartGame;
-        UIsystem.UI.Pause.performed -= PauesMenu;
-        UIsystem.UI.Pause.canceled -= PauesMenu;
+        UIsystem.UI.Restart.performed -= RestartGame;
+        UIsystem.UI.Pause.performed -= ctx => TogglePause();
     }
 }
