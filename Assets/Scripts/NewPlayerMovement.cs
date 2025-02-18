@@ -77,6 +77,8 @@ public class NewPlayerMovement : MonoBehaviour
         else
         {
             Debug.Log("NO");
+            Debug.Log(isGrounded);
+
         }
     }
 
