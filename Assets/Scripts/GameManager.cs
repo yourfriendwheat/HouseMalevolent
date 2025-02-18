@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
             NewPlayerMovement.OnDisable();
             SceneManager.LoadScene("Experinment_codingInput");
         }
-        else if (PlayerWon && Input.GetKeyDown(KeyCode.Space))
+        if (PlayerWon)
         {
             SceneManager.LoadScene("MainMenu_Testing");
         }
