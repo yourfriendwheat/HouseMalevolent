@@ -7,6 +7,16 @@ public class Player_Collision : MonoBehaviour
 {
     public bool isGrounded;
     public bool getKey = false;
+   // public AudioClip keySound;
+   // AudioSource audioSource;
+
+    void Start()
+    
+    {
+       // audioSource = GetComponent<AudioSource>();
+    }
+    
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,6 +28,7 @@ public class Player_Collision : MonoBehaviour
         if (collision.gameObject.CompareTag("Key"))
         {
             getKey = true;
+           // audioSource.PlayOneShot(keySound);
             Destroy(GameObject.FindWithTag("Key"));
         }
 
