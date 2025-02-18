@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     bool settingMenu = false;
     public GameObject buttons;
     public GameObject SettingMenu;
+   // AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
