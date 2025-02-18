@@ -37,4 +37,11 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void CloseSetting() 
+    {
+        settingMenu = false; 
+        SettingMenu.SetActive(false);
+    }
+
 }
