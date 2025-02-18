@@ -319,7 +319,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""81a02d1f-0027-4566-89f0-530abce50e20"",
-                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""path"": ""<XInputController>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

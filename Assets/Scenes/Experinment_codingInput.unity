@@ -2720,6 +2720,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1393111963}
     - target: {fileID: 6025065564004507554, guid: fbff4471df21bf64ea0bd6c9c9859d58, type: 3}
+      propertyPath: attackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025065564004507554, guid: fbff4471df21bf64ea0bd6c9c9859d58, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 43917215}
