@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
         gameText.gameObject.SetActive(false);
         isPlayerAlive = false;
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Win function 
@@ -100,6 +102,8 @@ public class GameManager : MonoBehaviour
         gameText.gameObject.SetActive(false);
         WinMenu.SetActive(true);
         PlayerWon = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Function that unpauses the game
