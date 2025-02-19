@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Experinment_codingInput");
+        SceneManager.LoadScene("PrototypeEnvironment");
     }
 
     public void OpenSetting()
