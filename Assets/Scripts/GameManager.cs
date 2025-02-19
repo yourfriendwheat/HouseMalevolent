@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         gameText.gameObject.SetActive(false);
         WinMenu.SetActive(true);
+        winText.gameObject.SetActive(true);
         PlayerWon = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

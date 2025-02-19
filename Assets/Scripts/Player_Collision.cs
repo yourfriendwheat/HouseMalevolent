@@ -25,11 +25,11 @@ public class Player_Collision : MonoBehaviour
             isGrounded = true;
         }
 
-        if (collision.gameObject.CompareTag("Key"))
+        if (collision.gameObject.CompareTag("CarKey"))
         {
             getKey = true;
            // audioSource.PlayOneShot(keySound);
-            Destroy(GameObject.FindWithTag("Key"));
+            Destroy(GameObject.FindWithTag("CarKey"));
         }
 
         if (collision.gameObject.CompareTag("Car") && getKey == true)
