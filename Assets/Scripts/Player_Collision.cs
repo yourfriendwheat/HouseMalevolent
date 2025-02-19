@@ -25,9 +25,15 @@ public class Player_Collision : MonoBehaviour
             isGrounded = true;
         }
 
+        if (collision.gameObject.CompareTag("Car"))
+        {
+            Debug.Log("You need a car key!");
+        }
+
         if (collision.gameObject.CompareTag("CarKey"))
         {
             getKey = true;
+            Debug.Log("You got a car key!");
            // audioSource.PlayOneShot(keySound);
             Destroy(GameObject.FindWithTag("CarKey"));
         }
