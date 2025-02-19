@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public InputSystem UIsystem;
     public GameObject PauseMenu;
+    public GameObject LoseMenu;
+    public GameObject WinMenu;
 
     private bool isPaused = false; // Track whether the game is paused
 
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
         isPlayerAlive = true;
 
         winText.gameObject.SetActive(false);
-        loseText.gameObject.SetActive(false);
+        LoseMenu.SetActive(false);
         pauseText.gameObject.SetActive(false);
         gameText.gameObject.SetActive(true);
 
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
        // audioSource.Stop();
        // audioSource.PlayOneShot(loseSound);
-        loseText.gameObject.SetActive(true);
+        LoseMenu.SetActive(true);
         gameText.gameObject.SetActive(false);
         isPlayerAlive = false;
         Time.timeScale = 0;
@@ -96,7 +98,7 @@ public class GameManager : MonoBehaviour
        // audioSource.PlayOneShot(winSound);
         Time.timeScale = 0;
         gameText.gameObject.SetActive(false);
-        winText.gameObject.SetActive(true);
+        WinMenu.SetActive(true);
         PlayerWon = true;
     }
 
