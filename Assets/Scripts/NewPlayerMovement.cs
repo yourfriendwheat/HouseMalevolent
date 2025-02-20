@@ -9,10 +9,10 @@ public class NewPlayerMovement : MonoBehaviour
 {
     public float mouseSensitivity = 3f;
     private float xRotation = 0;
-    public float moveSpeed = 5f;
+    public float moveSpeed;
     public float jumpStenght = 30f;
     public float runSpeed = 4f;
-
+    private float move_OriginalSpeed;
 
     public Player_Collision playerCollosion;
     public Transform playerCamera;
@@ -41,6 +41,8 @@ public class NewPlayerMovement : MonoBehaviour
         playerCollosion = GetComponent<Player_Collision>();
         inputSystem = new InputSystem();
         crouch = GetComponent<PlayerCrouch>();
+        move_OriginalSpeed = moveSpeed;
+
     }
 
     void Start()
@@ -117,7 +119,7 @@ public class NewPlayerMovement : MonoBehaviour
         if (isRunning)
         {
             isRunning = false;
-            moveSpeed = 5f;
+            moveSpeed = move_OriginalSpeed;
             Debug.Log("isnotrunning");
         }
     }
