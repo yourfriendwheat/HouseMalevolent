@@ -1,33 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Flashlight : MonoBehaviour
 {
-    [SerializeField] GameObject FlashlightLight;
+    [SerializeField] private GameObject FlashlightLight;
     private bool FlashlightEnabled = false;
+    private InputSystem inputSystem;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        FlashlightLight.SetActive(false);
+        inputSystem = new InputSystem();
+        FlashlightLight.SetActive(FlashlightEnabled);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        inputSystem.OnGround.Enable();
+        inputSystem.OnGround.OnLight.performed += Lighting;
+        inputSystem.OnGround.OnLight.canceled += Lighting;
+    }
+
+    void OnDisable()
+    {
+        inputSystem.OnGround.OnLight.performed -= Lighting;
+        inputSystem.OnGround.OnLight.canceled -= Lighting;
+        inputSystem.OnGround.Disable();
+    }
+
+    public void Lighting(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
         {
-            if(FlashlightEnabled == false)
-            {
-                FlashlightLight.gameObject.SetActive(true);
-                FlashlightEnabled = true;
-            }
-            else
-            {
-                FlashlightLight.gameObject.SetActive(false);
-                FlashlightEnabled = false;
-            }
+            FlashlightEnabled = !FlashlightEnabled;
+            FlashlightLight.SetActive(FlashlightEnabled);
+            Debug.Log("Flashlight toggled: " + FlashlightEnabled);
         }
     }
 }

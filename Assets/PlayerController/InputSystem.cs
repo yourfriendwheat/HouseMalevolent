@@ -71,6 +71,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OnLight"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba5817c6-0ced-4aac-8698-99eb40bb5f32"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -326,6 +335,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Running"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c70752e5-81e1-4136-a4b1-63043ca024d7"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OnLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45ef1357-a7b4-4c4e-9bf8-265c03138637"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OnLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -440,6 +471,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_OnGround_Look = m_OnGround.FindAction("Look", throwIfNotFound: true);
         m_OnGround_Crouch = m_OnGround.FindAction("Crouch", throwIfNotFound: true);
         m_OnGround_Running = m_OnGround.FindAction("Running", throwIfNotFound: true);
+        m_OnGround_OnLight = m_OnGround.FindAction("OnLight", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Restart = m_UI.FindAction("Restart", throwIfNotFound: true);
@@ -517,6 +549,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnGround_Look;
     private readonly InputAction m_OnGround_Crouch;
     private readonly InputAction m_OnGround_Running;
+    private readonly InputAction m_OnGround_OnLight;
     public struct OnGroundActions
     {
         private @InputSystem m_Wrapper;
@@ -526,6 +559,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_OnGround_Look;
         public InputAction @Crouch => m_Wrapper.m_OnGround_Crouch;
         public InputAction @Running => m_Wrapper.m_OnGround_Running;
+        public InputAction @OnLight => m_Wrapper.m_OnGround_OnLight;
         public InputActionMap Get() { return m_Wrapper.m_OnGround; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -550,6 +584,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Running.started += instance.OnRunning;
             @Running.performed += instance.OnRunning;
             @Running.canceled += instance.OnRunning;
+            @OnLight.started += instance.OnOnLight;
+            @OnLight.performed += instance.OnOnLight;
+            @OnLight.canceled += instance.OnOnLight;
         }
 
         private void UnregisterCallbacks(IOnGroundActions instance)
@@ -569,6 +606,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Running.started -= instance.OnRunning;
             @Running.performed -= instance.OnRunning;
             @Running.canceled -= instance.OnRunning;
+            @OnLight.started -= instance.OnOnLight;
+            @OnLight.performed -= instance.OnOnLight;
+            @OnLight.canceled -= instance.OnOnLight;
         }
 
         public void RemoveCallbacks(IOnGroundActions instance)
@@ -655,6 +695,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnRunning(InputAction.CallbackContext context);
+        void OnOnLight(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
