@@ -192,9 +192,9 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 isRunning = false;
                 moveSpeed = move_OriginalSpeed;
-                Debug.Log("Boost Depleted!");
+                //Debug.Log("Boost Depleted!");
 
-                if (recharge == null) // Ensure only one recharge coroutine runs
+                if (recharge == null)
                 {
                     recharge = StartCoroutine(RechargeBoost());
                 }
@@ -216,7 +216,7 @@ public class NewPlayerMovement : MonoBehaviour
             yield return null; // Wait for next frame
         }
 
-        recharge = null; // Mark coroutine as finished so it can restart next time
+        recharge = null;
     }
 
 
