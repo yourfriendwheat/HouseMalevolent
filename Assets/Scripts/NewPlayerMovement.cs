@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 
@@ -31,6 +32,14 @@ public class NewPlayerMovement : MonoBehaviour
     private PlayerCrouch crouch;
 
 
+    //stamina
+    public Image BoostBar;
+    public float Boost, MaxBoost;
+    public float RunCost;
+    public float ChargeRate;
+    private Coroutine recharge;
+
+
     public void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -49,6 +58,9 @@ public class NewPlayerMovement : MonoBehaviour
         OnEnable();
         // Lock the cursor to the center of the screen and make it invisible
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (MaxBoost <= 0) MaxBoost = 100f; // Default value if not set
+        Boost = MaxBoost;
     }
 
     void Update()
@@ -105,13 +117,22 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void OnRunning(InputAction.CallbackContext ctx)
     {
-        if (!isRunning)
+        if (!isRunning && Boost > 0)
         {
             isRunning = true;
             moveSpeed = runSpeed;
             Debug.Log("isrunning");
+
+            if (recharge != null)
+            {
+                StopCoroutine(recharge); // Stop recharge if running
+                recharge = null;
+            }
+
+            StartCoroutine(DrainBoost()); // Start draining boost continuously
         }
     }
+
 
     private void OnRunningCanceled(InputAction.CallbackContext ctx)
     {
@@ -120,8 +141,14 @@ public class NewPlayerMovement : MonoBehaviour
             isRunning = false;
             moveSpeed = move_OriginalSpeed;
             Debug.Log("isnotrunning");
+
+            if (recharge == null)
+            {
+                recharge = StartCoroutine(RechargeBoost());
+            }
         }
     }
+
 
     public void OnDisable()
     {
@@ -152,4 +179,45 @@ public class NewPlayerMovement : MonoBehaviour
 
         inputSystem.OnGround.Look.performed += MouseLook;
     }
+
+    private IEnumerator DrainBoost()
+    {
+        while (isRunning && Boost > 0)
+        {
+            Boost -= RunCost * Time.deltaTime;
+            Boost = Mathf.Clamp(Boost, 0, MaxBoost);
+            BoostBar.fillAmount = Boost / MaxBoost;
+
+            if (Boost <= 0)
+            {
+                isRunning = false;
+                moveSpeed = move_OriginalSpeed;
+                Debug.Log("Boost Depleted!");
+
+                if (recharge == null) // Ensure only one recharge coroutine runs
+                {
+                    recharge = StartCoroutine(RechargeBoost());
+                }
+            }
+            yield return null;
+        }
+    }
+
+
+    private IEnumerator RechargeBoost()
+    {
+        yield return new WaitForSeconds(1f); // Delay before recharging starts
+
+        while (Boost < MaxBoost)
+        {
+            Boost += ChargeRate * Time.deltaTime;
+            Boost = Mathf.Clamp(Boost, 0, MaxBoost);
+            BoostBar.fillAmount = Boost / MaxBoost;
+            yield return null; // Wait for next frame
+        }
+
+        recharge = null; // Mark coroutine as finished so it can restart next time
+    }
+
+
 }
