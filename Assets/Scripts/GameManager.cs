@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
                 gameOver();
             }
 
-            killGame();
+            //killGame();
 
         }
     }
@@ -175,11 +175,11 @@ public class GameManager : MonoBehaviour
 
     void killGame()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+/*        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
             Debug.Log("Application has closed in this build");
-        }
+        }*/
     }
 
     private void OnEnable()
