@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering.VirtualTexturing;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,12 +16,16 @@ public class MainMenu : MonoBehaviour
     public GameObject KeybaordMenu;
     public GameObject ControllerMenu;
 
+    InputSystem inputSystem;
 
-   // AudioSource audioSource;
+    // AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        inputSystem = new InputSystem();
+
+
         SettingMenu.SetActive(false);
         AudioMenu.SetActive(false);
         KeybaordMenu.SetActive(false);
@@ -86,4 +93,14 @@ public class MainMenu : MonoBehaviour
         ControllerMenu.SetActive(false);
     }
 
+
+    private void OnEnable()
+    {
+
+    }
+
+    private void OnDisable()
+    {
+
+    }
 }

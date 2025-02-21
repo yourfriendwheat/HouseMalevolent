@@ -286,7 +286,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""id"": ""211e4a2b-8887-4b3c-bc51-cdf5f821a278"",
                     ""path"": ""<XInputController>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=50,y=50)"",
+                    ""processors"": ""ScaleVector2(x=10,y=10)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -350,7 +350,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""45ef1357-a7b4-4c4e-9bf8-265c03138637"",
-                    ""path"": """",
+                    ""path"": ""<XInputController>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -386,6 +386,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""SelectButton"",
                     ""type"": ""Button"",
                     ""id"": ""64687ee4-1693-4213-8323-6cb4cab92841"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""9107f132-b6d2-4523-acfe-ece313514604"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -429,7 +438,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""344d8a4f-8d03-4865-8e58-b068b1befaf4"",
-                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""path"": ""<XInputController>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -451,11 +460,22 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fd5e6eec-f377-4e6f-9415-41d040f31f9b"",
-                    ""path"": ""<XInputController>/buttonEast"",
+                    ""path"": ""<XInputController>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SelectButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f23719fb-7af1-4ba7-8948-abbb6743d6ee"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -477,6 +497,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_UI_Restart = m_UI.FindAction("Restart", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_SelectButton = m_UI.FindAction("SelectButton", throwIfNotFound: true);
+        m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
     }
 
     ~@InputSystem()
@@ -633,6 +654,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Restart;
     private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_SelectButton;
+    private readonly InputAction m_UI_Cancel;
     public struct UIActions
     {
         private @InputSystem m_Wrapper;
@@ -640,6 +662,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Restart => m_Wrapper.m_UI_Restart;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @SelectButton => m_Wrapper.m_UI_SelectButton;
+        public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -658,6 +681,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SelectButton.started += instance.OnSelectButton;
             @SelectButton.performed += instance.OnSelectButton;
             @SelectButton.canceled += instance.OnSelectButton;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -671,6 +697,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SelectButton.started -= instance.OnSelectButton;
             @SelectButton.performed -= instance.OnSelectButton;
             @SelectButton.canceled -= instance.OnSelectButton;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -702,5 +731,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnRestart(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnSelectButton(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }
