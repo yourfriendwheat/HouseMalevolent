@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject PauseMenu;
     public GameObject LoseMenu;
     public GameObject WinMenu;
+    public GameObject Stamina;
 
     private bool isPaused = false; // Track whether the game is paused
 
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         LoseMenu.SetActive(false);
         pauseText.gameObject.SetActive(false);
         gameText.gameObject.SetActive(true);
+        Stamina.SetActive(true);
 
         NewPlayerMovement = GameObject.Find("Player").GetComponent<NewPlayerMovement>();
 
@@ -66,7 +68,6 @@ public class GameManager : MonoBehaviour
         {
             // Displays the timer
             timerText.text = "Time:" + (int)Timer;
-
             // Updates the timer
             Timer -= Time.deltaTime;
 
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
        // audioSource.PlayOneShot(loseSound);
         LoseMenu.SetActive(true);
         gameText.gameObject.SetActive(false);
+        Stamina.SetActive(false);
         isPlayerAlive = false;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
@@ -102,6 +104,7 @@ public class GameManager : MonoBehaviour
         gameText.gameObject.SetActive(false);
         WinMenu.SetActive(true);
         winText.gameObject.SetActive(true);
+        Stamina.SetActive(false);
         PlayerWon = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -114,6 +117,8 @@ public class GameManager : MonoBehaviour
         gameText.gameObject.SetActive(true);
         pauseText.gameObject.SetActive(false);
         PauseMenu.SetActive(false);
+        Stamina.SetActive(true);
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isPaused = false;
@@ -128,6 +133,8 @@ public class GameManager : MonoBehaviour
         gameText.gameObject.SetActive(false);
         pauseText.gameObject.SetActive(true);
         PauseMenu.SetActive(true);
+        Stamina.SetActive(false);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         isPaused = true;
