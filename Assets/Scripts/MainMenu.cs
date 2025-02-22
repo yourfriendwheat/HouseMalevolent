@@ -106,11 +106,17 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    private void Close(InputAction.CallbackContext ctx)
+    {
+        CloseSetting();
+    }
+
     public void OnDisable()
     {
         inputSystem.MainMenu.Disable();
         inputSystem.MainMenu.RightButton.performed -= GoRightButton;
         inputSystem.MainMenu.LeftButton.performed -= GoLeftButton;
+        inputSystem.MainMenu.CancelSetting.performed -= Close;
     }
 
     public void OnEnable()
@@ -118,5 +124,7 @@ public class MainMenu : MonoBehaviour
         inputSystem.MainMenu.Enable();
         inputSystem.MainMenu.RightButton.performed += GoRightButton;
         inputSystem.MainMenu.LeftButton.performed += GoLeftButton;
+        inputSystem.MainMenu.CancelSetting.performed += Close;
+
     }
 }

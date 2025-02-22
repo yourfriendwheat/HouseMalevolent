@@ -595,6 +595,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CancelSetting"",
+                    ""type"": ""Button"",
+                    ""id"": ""a94f618d-1bc8-4264-960b-43b936fcb291"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -630,6 +639,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""LeftButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e012388-b6bd-487b-b373-2bb52575cfa4"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CancelSetting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""566131b9-afc6-4013-991e-95e2ff59750b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CancelSetting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -657,6 +688,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
         m_MainMenu_RightButton = m_MainMenu.FindAction("RightButton", throwIfNotFound: true);
         m_MainMenu_LeftButton = m_MainMenu.FindAction("LeftButton", throwIfNotFound: true);
+        m_MainMenu_CancelSetting = m_MainMenu.FindAction("CancelSetting", throwIfNotFound: true);
     }
 
     ~@InputSystem()
@@ -907,12 +939,14 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private List<IMainMenuActions> m_MainMenuActionsCallbackInterfaces = new List<IMainMenuActions>();
     private readonly InputAction m_MainMenu_RightButton;
     private readonly InputAction m_MainMenu_LeftButton;
+    private readonly InputAction m_MainMenu_CancelSetting;
     public struct MainMenuActions
     {
         private @InputSystem m_Wrapper;
         public MainMenuActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @RightButton => m_Wrapper.m_MainMenu_RightButton;
         public InputAction @LeftButton => m_Wrapper.m_MainMenu_LeftButton;
+        public InputAction @CancelSetting => m_Wrapper.m_MainMenu_CancelSetting;
         public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -928,6 +962,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @LeftButton.started += instance.OnLeftButton;
             @LeftButton.performed += instance.OnLeftButton;
             @LeftButton.canceled += instance.OnLeftButton;
+            @CancelSetting.started += instance.OnCancelSetting;
+            @CancelSetting.performed += instance.OnCancelSetting;
+            @CancelSetting.canceled += instance.OnCancelSetting;
         }
 
         private void UnregisterCallbacks(IMainMenuActions instance)
@@ -938,6 +975,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @LeftButton.started -= instance.OnLeftButton;
             @LeftButton.performed -= instance.OnLeftButton;
             @LeftButton.canceled -= instance.OnLeftButton;
+            @CancelSetting.started -= instance.OnCancelSetting;
+            @CancelSetting.performed -= instance.OnCancelSetting;
+            @CancelSetting.canceled -= instance.OnCancelSetting;
         }
 
         public void RemoveCallbacks(IMainMenuActions instance)
@@ -978,5 +1018,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         void OnRightButton(InputAction.CallbackContext context);
         void OnLeftButton(InputAction.CallbackContext context);
+        void OnCancelSetting(InputAction.CallbackContext context);
     }
 }

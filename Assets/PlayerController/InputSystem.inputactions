@@ -573,6 +573,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CancelSetting",
+                    "type": "Button",
+                    "id": "a94f618d-1bc8-4264-960b-43b936fcb291",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -606,6 +615,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e012388-b6bd-487b-b373-2bb52575cfa4",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CancelSetting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "566131b9-afc6-4013-991e-95e2ff59750b",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CancelSetting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
