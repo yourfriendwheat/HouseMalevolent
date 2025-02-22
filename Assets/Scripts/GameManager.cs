@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
         if (!isPlayerAlive)
         {
             NewPlayerMovement.OnDisable();
-            SceneManager.LoadScene("Experinment_CodingInput");
+            SceneManager.LoadScene("PrototypeEnvironment");
         }
         if (PlayerWon)
         {
