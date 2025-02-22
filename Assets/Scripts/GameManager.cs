@@ -76,8 +76,6 @@ public class GameManager : MonoBehaviour
                 gameOver();
             }
 
-            //killGame();
-
         }
     }
 
@@ -160,7 +158,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void RestartGame(InputAction.CallbackContext ctx)
+    public void RestartGame()
     {
         if (!isPlayerAlive)
         {
@@ -185,7 +183,7 @@ public class GameManager : MonoBehaviour
         UIsystem.UI.Enable();
 
         UIsystem.UI.KillGame.performed += killGame;
-        UIsystem.UI.Restart.performed += RestartGame;
+        UIsystem.UI.Restart.performed += ctx => RestartGame();
         UIsystem.UI.Pause.performed += ctx => TogglePause();
     }
 
@@ -194,7 +192,7 @@ public class GameManager : MonoBehaviour
         UIsystem.UI.Disable();
 
         UIsystem.UI.KillGame.performed -= killGame;
-        UIsystem.UI.Restart.performed -= RestartGame;
+        UIsystem.UI.Restart.performed -= ctx => RestartGame();
         UIsystem.UI.Pause.performed -= ctx => TogglePause();
     }
 }
