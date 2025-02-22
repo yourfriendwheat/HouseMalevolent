@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.Rendering.VirtualTexturing;
-
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,94 +12,111 @@ public class MainMenu : MonoBehaviour
     public GameObject buttons;
     public GameObject SettingMenu;
     public GameObject AudioMenu;
-    public GameObject KeybaordMenu;
+    public GameObject KeyboardMenu;
     public GameObject ControllerMenu;
-
+    public Button[] settingButtons;
+    private int selectedIndex = 0;
     InputSystem inputSystem;
 
-    // AudioSource audioSource;
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         inputSystem = new InputSystem();
 
-
-        SettingMenu.SetActive(false);
-        AudioMenu.SetActive(false);
-        KeybaordMenu.SetActive(false);
-        ControllerMenu.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void Start()
     {
-        
+        SettingMenu.SetActive(false);
+        AudioMenu.SetActive(false);
+        KeyboardMenu.SetActive(false);
+        ControllerMenu.SetActive(false);
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Experinment_CodingInput");
+        SceneManager.LoadScene("PrototypeEnvironment");
     }
 
     public void OpenSetting()
     {
         settingMenu = true;
         SettingMenu.SetActive(true);
-        AudioMenu.SetActive(true);
-        KeybaordMenu.SetActive(false);
-        ControllerMenu.SetActive(false);
+        SetActivePanel(0); // Default to AudioMenu
     }
 
     public void OpenKeyboard()
     {
-        settingMenu = true;
-        SettingMenu.SetActive(true);
-        AudioMenu.SetActive(false);
-        KeybaordMenu.SetActive(true);
-        ControllerMenu.SetActive(false);
+        SetActivePanel(1);
     }
 
     public void OpenController()
     {
-        settingMenu = true;
-        SettingMenu.SetActive(true);
-        AudioMenu.SetActive(false);
-        KeybaordMenu.SetActive(false);
-        ControllerMenu.SetActive(true);
+        SetActivePanel(2);
     }
 
     public void OpenAudio()
     {
-        settingMenu = true;
-        SettingMenu.SetActive(true);
-        AudioMenu.SetActive(true);
-        KeybaordMenu.SetActive(false);
-        ControllerMenu.SetActive(false);
+        SetActivePanel(0);
+    }
+
+    private void SetActivePanel(int index)
+    {
+        AudioMenu.SetActive(index == 0);
+        KeyboardMenu.SetActive(index == 1);
+        ControllerMenu.SetActive(index == 2);
+        selectedIndex = index;
     }
 
     public void Exit()
     {
         Application.Quit();
+        Debug.Log("Application has closed in this build");
     }
 
-    public void CloseSetting() 
+    public void CloseSetting()
     {
-        settingMenu = false; 
+        settingMenu = false;
         SettingMenu.SetActive(false);
         AudioMenu.SetActive(false);
-        KeybaordMenu.SetActive(false);
+        KeyboardMenu.SetActive(false);
         ControllerMenu.SetActive(false);
     }
 
-
-    private void OnEnable()
+    void Update()
     {
 
     }
 
-    private void OnDisable()
+    private void GoRightButton(InputAction.CallbackContext ctx)
     {
+        if (settingMenu)
+        {
+            selectedIndex = (selectedIndex + 1) % settingButtons.Length;
+            SetActivePanel(selectedIndex);
+        }
 
+    }
+    private void GoLeftButton(InputAction.CallbackContext ctx)
+    {
+        if (settingMenu)
+        {
+            selectedIndex = (selectedIndex - 1 + settingButtons.Length) % settingButtons.Length;
+            SetActivePanel(selectedIndex);
+        }
+    }
+
+    public void OnDisable()
+    {
+        inputSystem.MainMenu.Disable();
+        inputSystem.MainMenu.RightButton.performed -= GoRightButton;
+        inputSystem.MainMenu.LeftButton.performed -= GoLeftButton;
+    }
+
+    public void OnEnable()
+    {
+        inputSystem.MainMenu.Enable();
+        inputSystem.MainMenu.RightButton.performed += GoRightButton;
+        inputSystem.MainMenu.LeftButton.performed += GoLeftButton;
     }
 }

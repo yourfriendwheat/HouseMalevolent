@@ -80,6 +80,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KillGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0264a2c-f6aa-4f17-a66d-9703955ebcc6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -286,7 +295,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""id"": ""211e4a2b-8887-4b3c-bc51-cdf5f821a278"",
                     ""path"": ""<XInputController>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=10,y=10)"",
+                    ""processors"": ""ScaleVector2(x=50,y=60)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -357,6 +366,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""OnLight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60d40f16-327e-4a39-8597-81ccc522fff7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KillGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6bca0374-112c-4354-9df9-d795a235d927"",
+                    ""path"": ""<XInputController>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KillGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -392,9 +423,27 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cancel"",
+                    ""name"": ""NOTHING"",
                     ""type"": ""Button"",
                     ""id"": ""9107f132-b6d2-4523-acfe-ece313514604"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KillGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""8624062e-1a21-4e8e-aac0-4d7f45302534"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SettingButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""60290301-e317-46b6-aa37-1d0ac654524c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -471,11 +520,114 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f23719fb-7af1-4ba7-8948-abbb6743d6ee"",
-                    ""path"": ""<Keyboard>/backspace"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Cancel"",
+                    ""action"": ""NOTHING"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7c2e183-262e-41d5-b556-76717370666c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KillGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ff4e02f-9ffc-4bc4-a16a-12ee05684439"",
+                    ""path"": ""<XInputController>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KillGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a8d4adf-4c0c-4446-801a-ea4bed98e97f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SettingButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24d0135a-79f3-407e-b997-c0c2b91aa34a"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SettingButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MainMenu"",
+            ""id"": ""349746a2-0957-4d0e-8af1-fe8850216e8d"",
+            ""actions"": [
+                {
+                    ""name"": ""RightButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""32220be6-cfc5-42f6-a8e8-fd2f4bb59468"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""f945108c-a99d-41b6-b15c-9cd247d24e21"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ac1d954d-ca87-47cd-a175-3f3562819648"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50b91506-4727-4704-814c-733d39165554"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e00de04-69e0-4825-af63-e8a6279fa7b5"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -492,18 +644,26 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_OnGround_Crouch = m_OnGround.FindAction("Crouch", throwIfNotFound: true);
         m_OnGround_Running = m_OnGround.FindAction("Running", throwIfNotFound: true);
         m_OnGround_OnLight = m_OnGround.FindAction("OnLight", throwIfNotFound: true);
+        m_OnGround_KillGame = m_OnGround.FindAction("KillGame", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Restart = m_UI.FindAction("Restart", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_SelectButton = m_UI.FindAction("SelectButton", throwIfNotFound: true);
-        m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
+        m_UI_NOTHING = m_UI.FindAction("NOTHING", throwIfNotFound: true);
+        m_UI_KillGame = m_UI.FindAction("KillGame", throwIfNotFound: true);
+        m_UI_SettingButton = m_UI.FindAction("SettingButton", throwIfNotFound: true);
+        // MainMenu
+        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
+        m_MainMenu_RightButton = m_MainMenu.FindAction("RightButton", throwIfNotFound: true);
+        m_MainMenu_LeftButton = m_MainMenu.FindAction("LeftButton", throwIfNotFound: true);
     }
 
     ~@InputSystem()
     {
         UnityEngine.Debug.Assert(!m_OnGround.enabled, "This will cause a leak and performance issues, InputSystem.OnGround.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_MainMenu.enabled, "This will cause a leak and performance issues, InputSystem.MainMenu.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -571,6 +731,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnGround_Crouch;
     private readonly InputAction m_OnGround_Running;
     private readonly InputAction m_OnGround_OnLight;
+    private readonly InputAction m_OnGround_KillGame;
     public struct OnGroundActions
     {
         private @InputSystem m_Wrapper;
@@ -581,6 +742,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_OnGround_Crouch;
         public InputAction @Running => m_Wrapper.m_OnGround_Running;
         public InputAction @OnLight => m_Wrapper.m_OnGround_OnLight;
+        public InputAction @KillGame => m_Wrapper.m_OnGround_KillGame;
         public InputActionMap Get() { return m_Wrapper.m_OnGround; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -608,6 +770,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @OnLight.started += instance.OnOnLight;
             @OnLight.performed += instance.OnOnLight;
             @OnLight.canceled += instance.OnOnLight;
+            @KillGame.started += instance.OnKillGame;
+            @KillGame.performed += instance.OnKillGame;
+            @KillGame.canceled += instance.OnKillGame;
         }
 
         private void UnregisterCallbacks(IOnGroundActions instance)
@@ -630,6 +795,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @OnLight.started -= instance.OnOnLight;
             @OnLight.performed -= instance.OnOnLight;
             @OnLight.canceled -= instance.OnOnLight;
+            @KillGame.started -= instance.OnKillGame;
+            @KillGame.performed -= instance.OnKillGame;
+            @KillGame.canceled -= instance.OnKillGame;
         }
 
         public void RemoveCallbacks(IOnGroundActions instance)
@@ -654,7 +822,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Restart;
     private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_SelectButton;
-    private readonly InputAction m_UI_Cancel;
+    private readonly InputAction m_UI_NOTHING;
+    private readonly InputAction m_UI_KillGame;
+    private readonly InputAction m_UI_SettingButton;
     public struct UIActions
     {
         private @InputSystem m_Wrapper;
@@ -662,7 +832,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Restart => m_Wrapper.m_UI_Restart;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @SelectButton => m_Wrapper.m_UI_SelectButton;
-        public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
+        public InputAction @NOTHING => m_Wrapper.m_UI_NOTHING;
+        public InputAction @KillGame => m_Wrapper.m_UI_KillGame;
+        public InputAction @SettingButton => m_Wrapper.m_UI_SettingButton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -681,9 +853,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SelectButton.started += instance.OnSelectButton;
             @SelectButton.performed += instance.OnSelectButton;
             @SelectButton.canceled += instance.OnSelectButton;
-            @Cancel.started += instance.OnCancel;
-            @Cancel.performed += instance.OnCancel;
-            @Cancel.canceled += instance.OnCancel;
+            @NOTHING.started += instance.OnNOTHING;
+            @NOTHING.performed += instance.OnNOTHING;
+            @NOTHING.canceled += instance.OnNOTHING;
+            @KillGame.started += instance.OnKillGame;
+            @KillGame.performed += instance.OnKillGame;
+            @KillGame.canceled += instance.OnKillGame;
+            @SettingButton.started += instance.OnSettingButton;
+            @SettingButton.performed += instance.OnSettingButton;
+            @SettingButton.canceled += instance.OnSettingButton;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -697,9 +875,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SelectButton.started -= instance.OnSelectButton;
             @SelectButton.performed -= instance.OnSelectButton;
             @SelectButton.canceled -= instance.OnSelectButton;
-            @Cancel.started -= instance.OnCancel;
-            @Cancel.performed -= instance.OnCancel;
-            @Cancel.canceled -= instance.OnCancel;
+            @NOTHING.started -= instance.OnNOTHING;
+            @NOTHING.performed -= instance.OnNOTHING;
+            @NOTHING.canceled -= instance.OnNOTHING;
+            @KillGame.started -= instance.OnKillGame;
+            @KillGame.performed -= instance.OnKillGame;
+            @KillGame.canceled -= instance.OnKillGame;
+            @SettingButton.started -= instance.OnSettingButton;
+            @SettingButton.performed -= instance.OnSettingButton;
+            @SettingButton.canceled -= instance.OnSettingButton;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -717,6 +901,60 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // MainMenu
+    private readonly InputActionMap m_MainMenu;
+    private List<IMainMenuActions> m_MainMenuActionsCallbackInterfaces = new List<IMainMenuActions>();
+    private readonly InputAction m_MainMenu_RightButton;
+    private readonly InputAction m_MainMenu_LeftButton;
+    public struct MainMenuActions
+    {
+        private @InputSystem m_Wrapper;
+        public MainMenuActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RightButton => m_Wrapper.m_MainMenu_RightButton;
+        public InputAction @LeftButton => m_Wrapper.m_MainMenu_LeftButton;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMainMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MainMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MainMenuActionsCallbackInterfaces.Add(instance);
+            @RightButton.started += instance.OnRightButton;
+            @RightButton.performed += instance.OnRightButton;
+            @RightButton.canceled += instance.OnRightButton;
+            @LeftButton.started += instance.OnLeftButton;
+            @LeftButton.performed += instance.OnLeftButton;
+            @LeftButton.canceled += instance.OnLeftButton;
+        }
+
+        private void UnregisterCallbacks(IMainMenuActions instance)
+        {
+            @RightButton.started -= instance.OnRightButton;
+            @RightButton.performed -= instance.OnRightButton;
+            @RightButton.canceled -= instance.OnRightButton;
+            @LeftButton.started -= instance.OnLeftButton;
+            @LeftButton.performed -= instance.OnLeftButton;
+            @LeftButton.canceled -= instance.OnLeftButton;
+        }
+
+        public void RemoveCallbacks(IMainMenuActions instance)
+        {
+            if (m_Wrapper.m_MainMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMainMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MainMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MainMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     public interface IOnGroundActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -725,12 +963,20 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnRunning(InputAction.CallbackContext context);
         void OnOnLight(InputAction.CallbackContext context);
+        void OnKillGame(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnRestart(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnSelectButton(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
+        void OnNOTHING(InputAction.CallbackContext context);
+        void OnKillGame(InputAction.CallbackContext context);
+        void OnSettingButton(InputAction.CallbackContext context);
+    }
+    public interface IMainMenuActions
+    {
+        void OnRightButton(InputAction.CallbackContext context);
+        void OnLeftButton(InputAction.CallbackContext context);
     }
 }

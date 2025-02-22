@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "KillGame",
+                    "type": "Button",
+                    "id": "c0264a2c-f6aa-4f17-a66d-9703955ebcc6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -264,7 +273,7 @@
                     "id": "211e4a2b-8887-4b3c-bc51-cdf5f821a278",
                     "path": "<XInputController>/rightStick",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=10,y=10)",
+                    "processors": "ScaleVector2(x=50,y=60)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
@@ -335,6 +344,28 @@
                     "action": "OnLight",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60d40f16-327e-4a39-8597-81ccc522fff7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KillGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bca0374-112c-4354-9df9-d795a235d927",
+                    "path": "<XInputController>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KillGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -370,9 +401,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cancel",
+                    "name": "NOTHING",
                     "type": "Button",
                     "id": "9107f132-b6d2-4523-acfe-ece313514604",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "KillGame",
+                    "type": "Button",
+                    "id": "8624062e-1a21-4e8e-aac0-4d7f45302534",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SettingButton",
+                    "type": "Button",
+                    "id": "60290301-e317-46b6-aa37-1d0ac654524c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -449,11 +498,114 @@
                 {
                     "name": "",
                     "id": "f23719fb-7af1-4ba7-8948-abbb6743d6ee",
-                    "path": "<Keyboard>/backspace",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Cancel",
+                    "action": "NOTHING",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7c2e183-262e-41d5-b556-76717370666c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KillGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ff4e02f-9ffc-4bc4-a16a-12ee05684439",
+                    "path": "<XInputController>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KillGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a8d4adf-4c0c-4446-801a-ea4bed98e97f",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SettingButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24d0135a-79f3-407e-b997-c0c2b91aa34a",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SettingButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MainMenu",
+            "id": "349746a2-0957-4d0e-8af1-fe8850216e8d",
+            "actions": [
+                {
+                    "name": "RightButton",
+                    "type": "Button",
+                    "id": "32220be6-cfc5-42f6-a8e8-fd2f4bb59468",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftButton",
+                    "type": "Button",
+                    "id": "f945108c-a99d-41b6-b15c-9cd247d24e21",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ac1d954d-ca87-47cd-a175-3f3562819648",
+                    "path": "<XInputController>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50b91506-4727-4704-814c-733d39165554",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e00de04-69e0-4825-af63-e8a6279fa7b5",
+                    "path": "<XInputController>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

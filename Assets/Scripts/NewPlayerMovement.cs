@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.VirtualTexturing;
 
 
 public class NewPlayerMovement : MonoBehaviour
@@ -150,6 +151,12 @@ public class NewPlayerMovement : MonoBehaviour
     }
 
 
+    private void killGame(InputAction.CallbackContext ctx)
+    {
+        Application.Quit();
+        Debug.Log("Application has closed in this build");
+    }
+
     public void OnDisable()
     {
         if (inputSystem != null)
@@ -163,6 +170,8 @@ public class NewPlayerMovement : MonoBehaviour
             inputSystem.OnGround.Running.performed -= OnRunning;
             inputSystem.OnGround.Running.canceled -= OnRunningCanceled;
             inputSystem.OnGround.Look.performed -= MouseLook;
+            inputSystem.OnGround.KillGame.performed -= killGame;
+
         }
     }
 
@@ -176,7 +185,7 @@ public class NewPlayerMovement : MonoBehaviour
         inputSystem.OnGround.Movement.canceled += Movement;
         inputSystem.OnGround.Running.performed += OnRunning;
         inputSystem.OnGround.Running.canceled += OnRunningCanceled;
-
+        inputSystem.OnGround.KillGame.performed += killGame;
         inputSystem.OnGround.Look.performed += MouseLook;
     }
 

@@ -173,19 +173,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void killGame()
+    private void killGame(InputAction.CallbackContext ctx)
     {
-/*        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-            Debug.Log("Application has closed in this build");
-        }*/
+        Application.Quit();
+        Debug.Log("Application has closed in this build");
     }
+
 
     private void OnEnable()
     {
         UIsystem.UI.Enable();
 
+        UIsystem.UI.KillGame.performed += killGame;
         UIsystem.UI.Restart.performed += RestartGame;
         UIsystem.UI.Pause.performed += ctx => TogglePause();
     }
@@ -194,6 +193,7 @@ public class GameManager : MonoBehaviour
     {
         UIsystem.UI.Disable();
 
+        UIsystem.UI.KillGame.performed -= killGame;
         UIsystem.UI.Restart.performed -= RestartGame;
         UIsystem.UI.Pause.performed -= ctx => TogglePause();
     }
