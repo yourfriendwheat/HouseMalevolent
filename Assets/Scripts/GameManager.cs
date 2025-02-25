@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pauseText;
     public TextMeshProUGUI gameText;
 
+
     public AudioClip winSound;
     public AudioClip loseSound;
     AudioSource audioSource;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     public GameObject LoseMenu;
     public GameObject WinMenu;
     public GameObject Stamina;
+    public GameObject Flashlight;
 
     private bool isPaused = false; // Track whether the game is paused
 
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         pauseText.gameObject.SetActive(false);
         gameText.gameObject.SetActive(true);
         Stamina.SetActive(true);
+        Flashlight.SetActive(true);
 
         NewPlayerMovement = GameObject.Find("Player").GetComponent<NewPlayerMovement>();
 
@@ -87,6 +90,7 @@ public class GameManager : MonoBehaviour
         LoseMenu.SetActive(true);
         gameText.gameObject.SetActive(false);
         Stamina.SetActive(false);
+        Flashlight.SetActive(false);
         isPlayerAlive = false;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
@@ -103,6 +107,7 @@ public class GameManager : MonoBehaviour
         WinMenu.SetActive(true);
         winText.gameObject.SetActive(true);
         Stamina.SetActive(false);
+        Flashlight.SetActive(false);
         PlayerWon = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -116,6 +121,8 @@ public class GameManager : MonoBehaviour
         pauseText.gameObject.SetActive(false);
         PauseMenu.SetActive(false);
         Stamina.SetActive(true);
+        Flashlight.SetActive(true);
+
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -132,6 +139,7 @@ public class GameManager : MonoBehaviour
         pauseText.gameObject.SetActive(true);
         PauseMenu.SetActive(true);
         Stamina.SetActive(false);
+        Flashlight.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
