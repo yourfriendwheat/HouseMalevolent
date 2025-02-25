@@ -11,7 +11,6 @@ public class MainMenu : MonoBehaviour
     bool settingMenu = false;
     public GameObject buttons;
     public GameObject SettingMenu;
-    public GameObject AudioMenu;
     public GameObject KeyboardMenu;
     public GameObject ControllerMenu;
     public Button[] settingButtons;
@@ -28,7 +27,6 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         SettingMenu.SetActive(false);
-        AudioMenu.SetActive(false);
         KeyboardMenu.SetActive(false);
         ControllerMenu.SetActive(false);
     }
@@ -42,29 +40,24 @@ public class MainMenu : MonoBehaviour
     {
         settingMenu = true;
         SettingMenu.SetActive(true);
-        SetActivePanel(0); // Default to AudioMenu
+        SetActivePanel(0);
     }
 
     public void OpenKeyboard()
     {
-        SetActivePanel(1);
+        SetActivePanel(0);
     }
 
     public void OpenController()
     {
-        SetActivePanel(2);
+        SetActivePanel(1);
     }
 
-    public void OpenAudio()
-    {
-        SetActivePanel(0);
-    }
 
     private void SetActivePanel(int index)
     {
-        AudioMenu.SetActive(index == 0);
-        KeyboardMenu.SetActive(index == 1);
-        ControllerMenu.SetActive(index == 2);
+        KeyboardMenu.SetActive(index == 0);
+        ControllerMenu.SetActive(index == 1);
         selectedIndex = index;
     }
 
@@ -78,7 +71,6 @@ public class MainMenu : MonoBehaviour
     {
         settingMenu = false;
         SettingMenu.SetActive(false);
-        AudioMenu.SetActive(false);
         KeyboardMenu.SetActive(false);
         ControllerMenu.SetActive(false);
     }
