@@ -9,8 +9,13 @@ public class Flashlight : MonoBehaviour
     private bool FlashlightEnabled = false;
     private InputSystem inputSystem;
 
+    public AudioClip FlashlightSoundOn;
+    public AudioClip FlashlightSoundOff;
+    AudioSource audioSource;
+
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         inputSystem = new InputSystem();
         FlashlightLight.SetActive(FlashlightEnabled);
 
@@ -37,6 +42,16 @@ public class Flashlight : MonoBehaviour
             FlashlightEnabled = !FlashlightEnabled;
             FlashlightLight.SetActive(FlashlightEnabled);
             Debug.Log("Flashlight toggled: " + FlashlightEnabled);
+
+            if(FlashlightEnabled)
+            {
+                audioSource.PlayOneShot(FlashlightSoundOn);
+
+            }
+            else
+            {
+                audioSource.PlayOneShot(FlashlightSoundOff);
+            }
         }
     }
 }

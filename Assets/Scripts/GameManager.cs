@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pauseText;
     public TextMeshProUGUI gameText;
 
-  //  public AudioClip winSound;
-   // public AudioClip loseSound;
-   // AudioSource audioSource;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    AudioSource audioSource;
 
     private NewPlayerMovement NewPlayerMovement;
 
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         Timer = 90.0f;
         Time.timeScale = 1;
@@ -82,8 +82,8 @@ public class GameManager : MonoBehaviour
     // Lose function 
     public void gameOver()
     {
-       // audioSource.Stop();
-       // audioSource.PlayOneShot(loseSound);
+        audioSource.Stop();
+        audioSource.PlayOneShot(loseSound);
         LoseMenu.SetActive(true);
         gameText.gameObject.SetActive(false);
         Stamina.SetActive(false);
@@ -96,8 +96,8 @@ public class GameManager : MonoBehaviour
     // Win function 
     public void Win()
     {
-        //audioSource.Stop();
-       // audioSource.PlayOneShot(winSound);
+        audioSource.Stop();
+        audioSource.PlayOneShot(winSound);
         Time.timeScale = 0;
         gameText.gameObject.SetActive(false);
         WinMenu.SetActive(true);

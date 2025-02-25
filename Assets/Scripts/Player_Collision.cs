@@ -7,17 +7,15 @@ public class Player_Collision : MonoBehaviour
 {
     public bool isGrounded;
     public bool getKey = false;
-   // public AudioClip keySound;
-   // AudioSource audioSource;
+    public AudioClip ItemSound;
+    AudioSource audioSource;
 
     void Start()
     
     {
-       // audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
     
-
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -32,9 +30,9 @@ public class Player_Collision : MonoBehaviour
 
         if (collision.gameObject.CompareTag("CarKey"))
         {
+            audioSource.PlayOneShot(ItemSound);
             getKey = true;
             Debug.Log("You got a car key!");
-           // audioSource.PlayOneShot(keySound);
             Destroy(GameObject.FindWithTag("CarKey"));
         }
 
