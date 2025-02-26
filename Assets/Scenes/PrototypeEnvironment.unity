@@ -24542,7 +24542,7 @@ MonoBehaviour:
   pauseText: {fileID: 163794529}
   gameText: {fileID: 1627349200}
   winSound: {fileID: 8300000, guid: 28cad1391403b814f901a5dc38399704, type: 3}
-  loseSound: {fileID: 8300000, guid: c9af57377a3f7eb4fbbb97016f116ac0, type: 3}
+  loseSound: {fileID: 8300000, guid: c271cd9019c5bda4793043bc9e8c59d5, type: 3}
   PauseMenu: {fileID: 1911637607}
   LoseMenu: {fileID: 779248856}
   WinMenu: {fileID: 1723931759}

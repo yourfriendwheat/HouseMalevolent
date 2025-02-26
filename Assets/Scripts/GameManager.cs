@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         audioSource.Stop();
-        AudioSource.PlayClipAtPoint(loseSound, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(loseSound, Camera.main.transform.position);   
         LoseMenu.SetActive(true);
         gameText.gameObject.SetActive(false);
         Stamina.SetActive(false);
