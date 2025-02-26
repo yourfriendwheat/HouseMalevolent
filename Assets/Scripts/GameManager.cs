@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         audioSource.Stop();
-        audioSource.PlayOneShot(loseSound);
+        AudioSource.PlayClipAtPoint(loseSound, Camera.main.transform.position);
         LoseMenu.SetActive(true);
         gameText.gameObject.SetActive(false);
         Stamina.SetActive(false);
