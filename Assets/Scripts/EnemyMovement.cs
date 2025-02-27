@@ -13,13 +13,14 @@ public class EnemyMovement : MonoBehaviour
 
     //Range within which the enemy can attack the player
     [SerializeField]
-    float attackRange = 5f;
+    float attackRange = 2f;
 
     private GameObject player;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
     private bool isChasing;
     private bool isInRange;
     private bool lose;
+    private bool ignore;
 
     private EnemyTrigger tiggerPlayer;
 
@@ -79,7 +80,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // If the enemy is not chasing and has reached its current waypoint, move to a new random waypoint
-        else if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
+        else if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f )
         {
             MoveToRandomWaypoint();
         }
