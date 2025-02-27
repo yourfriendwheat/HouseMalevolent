@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c1cbf1b9adbf41f4a8a765279b07300b
+guid: 65fe6bbca53ed41408f8aa04a2092697
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mutant Walking
+      name: Zombie Running
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 28
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

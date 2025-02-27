@@ -66,13 +66,13 @@ public class NewPlayerMovement : MonoBehaviour
 
     void Update()
     {
+        isGrounded = playerCollosion.isGrounded;
 
 
     }
 
     void FixedUpdate()
     {
-        isGrounded = playerCollosion.isGrounded;
         if (moveVector != Vector3.zero)
         {
             Vector3 moveDirection = transform.TransformDirection(moveVector);
@@ -91,8 +91,6 @@ public class NewPlayerMovement : MonoBehaviour
         else
         {
             Debug.Log("NO");
-            Debug.Log(isGrounded);
-
         }
     }
 

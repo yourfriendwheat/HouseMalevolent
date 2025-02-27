@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_Collision : MonoBehaviour
@@ -11,16 +8,16 @@ public class Player_Collision : MonoBehaviour
     AudioSource audioSource;
 
     void Start()
-    
     {
         audioSource = GetComponent<AudioSource>();
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            Debug.Log("Player is grounded on: " + collision.gameObject.name);
         }
 
         if (collision.gameObject.CompareTag("Car"))
@@ -42,11 +39,20 @@ public class Player_Collision : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+            Debug.Log("Player is no longer grounded.");
         }
     }
 }

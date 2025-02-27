@@ -15,7 +15,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     float attackRange = 5f;
 
-
     private GameObject player;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
     private bool isChasing;
@@ -25,6 +24,9 @@ public class EnemyMovement : MonoBehaviour
     private EnemyTrigger tiggerPlayer;
 
     public GameManager GameManager;
+
+    private Animator HotEnemy;
+
 
     void Start()
     {
@@ -41,6 +43,8 @@ public class EnemyMovement : MonoBehaviour
         tiggerPlayer = this.GetComponentInChildren<EnemyTrigger>();
 
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        HotEnemy = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -80,13 +84,15 @@ public class EnemyMovement : MonoBehaviour
             MoveToRandomWaypoint();
         }
 
+        UpdateAnimation();
+
     }
+
 
     // Moves the enemy to a random waypoint from the waypoints array
     void MoveToRandomWaypoint()
     {
         if (waypoints.Length == 0) return;
-
         // Choose a random waypoint and set it as the destination
         int randomIndex = Random.Range(0, waypoints.Length);
         navMeshAgent.SetDestination(waypoints[randomIndex].position);
@@ -110,4 +116,21 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    void UpdateAnimation()
+    {
+        float speed = navMeshAgent.velocity.magnitude;
+
+        if (speed > 0.01f)
+        {
+            HotEnemy.SetBool("isWalking", !isChasing);
+            HotEnemy.SetBool("isChasing", isChasing);
+            HotEnemy.SetBool("idle", false);
+        }
+        else
+        {
+            HotEnemy.SetBool("isWalking", false);
+            HotEnemy.SetBool("isChasing", false);
+            HotEnemy.SetBool("idle", true);
+        }
+    }
 }
