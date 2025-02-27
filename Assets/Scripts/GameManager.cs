@@ -14,11 +14,7 @@ public class GameManager : MonoBehaviour
     public EnemyMovement EnemyMovement;
 
     private float Timer;
-
-    public TextMeshProUGUI winText;
-    public TextMeshProUGUI loseText;
     public TextMeshProUGUI timerText;
-    public TextMeshProUGUI pauseText;
     public TextMeshProUGUI gameText;
 
 
@@ -52,9 +48,7 @@ public class GameManager : MonoBehaviour
         PlayerWon = false;
         isPlayerAlive = true;
 
-        winText.gameObject.SetActive(false);
         LoseMenu.SetActive(false);
-        pauseText.gameObject.SetActive(false);
         gameText.gameObject.SetActive(true);
         Stamina.SetActive(true);
         Flashlight.SetActive(true);
@@ -105,7 +99,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         gameText.gameObject.SetActive(false);
         WinMenu.SetActive(true);
-        winText.gameObject.SetActive(true);
         Stamina.SetActive(false);
         Flashlight.SetActive(false);
         PlayerWon = true;
@@ -118,7 +111,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         gameText.gameObject.SetActive(true);
-        pauseText.gameObject.SetActive(false);
         PauseMenu.SetActive(false);
         Stamina.SetActive(true);
         Flashlight.SetActive(true);
@@ -136,7 +128,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         gameText.gameObject.SetActive(false);
-        pauseText.gameObject.SetActive(true);
         PauseMenu.SetActive(true);
         Stamina.SetActive(false);
         Flashlight.SetActive(false);
