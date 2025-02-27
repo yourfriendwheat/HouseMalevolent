@@ -16,7 +16,7 @@ public class FootStepSystem : MonoBehaviour
     public LayerMask groundLayer;
 
     public float runRate = 0.5f;
-    public float stepRate = 0.3f; // Adjusted to be faster than walking
+    public float stepRate = 0.3f;
     private float nextStepTime = 0f;
 
     private NewPlayerMovement movement;
@@ -37,7 +37,7 @@ public class FootStepSystem : MonoBehaviour
         if ((walk || run) && Time.time >= nextStepTime)
         {
             Footstep();
-            nextStepTime = Time.time + (run ? runRate : stepRate); // Adjust time for running or walking
+            nextStepTime = Time.time + (run ? runRate : stepRate);
         }
     }
 

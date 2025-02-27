@@ -101,13 +101,14 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (moveVector.magnitude > 0.1f && isGrounded)
         {
-           isWalking = true;
+            isWalking = !isRunning;
         }
         else
         {
             isWalking = false;
         }
- 
+
+
     }
 
     public void MouseLook(InputAction.CallbackContext ctx)

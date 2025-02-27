@@ -16,7 +16,7 @@ public class Player_Collision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Grass") || collision.gameObject.CompareTag("Road") || collision.gameObject.CompareTag("Road"))
+        if (collision.gameObject.CompareTag("Grass") || collision.gameObject.CompareTag("Road") || collision.gameObject.CompareTag("Wood"))
         {
             isGrounded = true;
             Debug.Log("Player is grounded on: " + collision.gameObject.name);
@@ -43,7 +43,7 @@ public class Player_Collision : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Grass") || collision.gameObject.CompareTag("Road") || collision.gameObject.CompareTag("Road"))
+        if (collision.gameObject.CompareTag("Grass") || collision.gameObject.CompareTag("Road") || collision.gameObject.CompareTag("Wood"))
         {
             isGrounded = true;
         }
@@ -51,7 +51,7 @@ public class Player_Collision : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Grass") || collision.gameObject.CompareTag("Road") || collision.gameObject.CompareTag("Road"))
+        if (collision.gameObject.CompareTag("Grass") || collision.gameObject.CompareTag("Road") || collision.gameObject.CompareTag("Wood"))
         {
             isGrounded = false;
             Debug.Log("Player is no longer grounded.");
