@@ -20,7 +20,8 @@ public class NewPlayerMovement : MonoBehaviour
     private Rigidbody rb;
 
     private bool isGrounded;
-    private bool isRunning = false;
+    public bool isRunning = false;
+    public bool isWalking = false;
 
     private Vector3 runVector;
 
@@ -97,6 +98,16 @@ public class NewPlayerMovement : MonoBehaviour
     public void Movement(InputAction.CallbackContext ctx)
     {
         moveVector = ctx.ReadValue<Vector3>();
+
+        if (moveVector.magnitude > 0.1f && isGrounded)
+        {
+           isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
+ 
     }
 
     public void MouseLook(InputAction.CallbackContext ctx)

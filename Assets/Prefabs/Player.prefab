@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 6921635497164079054}
   - component: {fileID: 5677101752109912774}
   - component: {fileID: 8340971044092499769}
+  - component: {fileID: 3395533147511628449}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -341,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   getKey: 0
+  ItemSound: {fileID: 0}
 --- !u!114 &6921635497164079054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,8 +361,14 @@ MonoBehaviour:
   runSpeed: 4
   playerCollosion: {fileID: 4346211746316910323}
   playerCamera: {fileID: 5551902246991956813}
+  isWalking: 0
   moveVector: {x: 0, y: 0, z: 0}
   gameManager: {fileID: 0}
+  BoostBar: {fileID: 0}
+  Boost: 0
+  MaxBoost: 0
+  RunCost: 0
+  ChargeRate: 0
 --- !u!114 &5677101752109912774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,3 +394,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlashlightLight: {fileID: 3384738305454354351}
+  FlashlightSoundOn: {fileID: 0}
+  FlashlightSoundOff: {fileID: 0}
+  LightBar: {fileID: 0}
+  CurrentLighting: 0
+  MaxLight: 0
+  LightCost: 0
+--- !u!114 &3395533147511628449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345140641833647407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2c4f84d6c19834c86fed4cd53d66bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8186986260982050188}
+  AudioSource: {fileID: 0}
+  grass: {fileID: 8300000, guid: e4fb335abdb6a1a4a9a397126135a9a5, type: 3}
+  road: {fileID: 8300000, guid: e4fb335abdb6a1a4a9a397126135a9a5, type: 3}
+  wood: {fileID: 8300000, guid: e4fb335abdb6a1a4a9a397126135a9a5, type: 3}
+  range: 0
+  footstepVolume: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  stepRate: 0.5
+  Movement: {fileID: 0}
