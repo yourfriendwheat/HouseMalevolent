@@ -154,6 +154,16 @@ public class GameManager : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu_Testing");
+
+        if (!isPlayerAlive)
+        {
+            NewPlayerMovement.OnDisable();
+            SceneManager.LoadScene("PrototypeEnvironment");
+        }
+        if (PlayerWon)
+        {
+            SceneManager.LoadScene("MainMenu_Testing");
+        }
     }
 
 
