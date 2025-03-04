@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     private int x = 1;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI gameText;
+    public TextMeshProUGUI KeyReminder;
+    public TextMeshProUGUI GetBack;
+    public TextMeshProUGUI BeginningText;
 
 
     public AudioClip winSound;
@@ -88,6 +91,11 @@ public class GameManager : MonoBehaviour
         gameText.gameObject.SetActive(false);
         Stamina.SetActive(false);
         Flashlight.SetActive(false);
+        KeyReminder.gameObject.SetActive(false);
+        GetBack.gameObject.SetActive(false);
+        BeginningText.gameObject.SetActive(false);
+
+
         isPlayerAlive = false;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
