@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public EnemyMovement EnemyMovement;
 
     private float Timer;
+    private int x = 1;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI gameText;
 
@@ -70,7 +71,11 @@ public class GameManager : MonoBehaviour
 
             if (Timer <= 0.0f)
             {
-                gameOver();
+                if(x == 1)
+                {
+                    x = 2;
+                    gameOver();
+                }
             }
 
         }
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         audioSource.Stop();
-        AudioSource.PlayClipAtPoint(loseSound, Camera.main.transform.position);   
+        AudioSource.PlayClipAtPoint(loseSound, Camera.main.transform.position); 
         LoseMenu.SetActive(true);
         gameText.gameObject.SetActive(false);
         Stamina.SetActive(false);
