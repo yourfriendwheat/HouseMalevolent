@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     public GameObject WinMenu;
     public GameObject Stamina;
     public GameObject Flashlight;
-
     private bool isPaused = false; // Track whether the game is paused
 
     private void Awake()
@@ -53,7 +52,6 @@ public class GameManager : MonoBehaviour
         gameText.gameObject.SetActive(true);
         Stamina.SetActive(true);
         Flashlight.SetActive(true);
-
         NewPlayerMovement = GameObject.Find("Player").GetComponent<NewPlayerMovement>();
 
         OnEnable();
