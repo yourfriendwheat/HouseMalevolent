@@ -41,6 +41,8 @@ public class NewPlayerMovement : MonoBehaviour
     public float ChargeRate;
     private Coroutine recharge;
 
+    Vector2 mouseLook;
+
 
     public void Awake()
     {
@@ -69,6 +71,7 @@ public class NewPlayerMovement : MonoBehaviour
     {
         isGrounded = playerCollosion.isGrounded;
 
+        ApplyMouseLook();
 
     }
 
@@ -80,6 +83,25 @@ public class NewPlayerMovement : MonoBehaviour
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
         }
     }
+
+    public void MouseLook(InputAction.CallbackContext ctx)
+    {
+        // Store input value for processing in FixedUpdate
+        mouseLook = ctx.ReadValue<Vector2>();
+    }
+
+    private void ApplyMouseLook()
+    {
+        float mouseX = mouseLook.x * mouseSensitivity * Time.fixedDeltaTime;
+        float mouseY = mouseLook.y * mouseSensitivity * Time.fixedDeltaTime;
+
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseX);
+    }
+
 
     public void Jump(InputAction.CallbackContext ctx)
     {
@@ -109,21 +131,6 @@ public class NewPlayerMovement : MonoBehaviour
         }
 
 
-    }
-
-    public void MouseLook(InputAction.CallbackContext ctx)
-    {
-        Vector2 lookInput = ctx.ReadValue<Vector2>();
-
-        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
-        float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        transform.Rotate(Vector3.up * mouseX);
     }
 
     private void OnRunning(InputAction.CallbackContext ctx)
