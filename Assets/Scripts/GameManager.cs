@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
     // Win function 
     public void Win()
     {
+       // EnemyMovement.enemySound.Stop();
         audioSource.Stop();
         audioSource.PlayOneShot(winSound);
         Time.timeScale = 0;

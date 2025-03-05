@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "HouseMalevolant.sln"
+    "dotnet.defaultSolution": "HouseMalevolent.sln"
 }

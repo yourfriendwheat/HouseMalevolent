@@ -23,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
     private bool ignore;
 
     private EnemyTrigger tiggerPlayer;
-    AudioSource enemySound;
+    public AudioSource enemySound;
 
     public GameManager GameManager;
 
