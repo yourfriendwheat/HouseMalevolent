@@ -66,6 +66,7 @@ public class EnemyMovement : MonoBehaviour
             if (playerInAttackRange)
             {
                 lose = true;
+                transform.LookAt(player.transform.position);
                 Attack();
             }
 

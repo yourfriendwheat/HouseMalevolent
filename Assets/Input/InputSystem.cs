@@ -295,7 +295,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""id"": ""211e4a2b-8887-4b3c-bc51-cdf5f821a278"",
                     ""path"": ""<XInputController>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=50,y=60)"",
+                    ""processors"": ""ScaleVector2(x=10,y=10)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
