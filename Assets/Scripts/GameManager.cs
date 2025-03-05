@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public bool isPlayerAlive;
     public bool PlayerWon;
 
-    public EnemyMovement EnemyMovement;
+    private EnemyMovement EnemyMovement;
 
     private float Timer;
     private int x = 1;
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         Stamina.SetActive(true);
         Flashlight.SetActive(true);
         NewPlayerMovement = GameObject.Find("Player").GetComponent<NewPlayerMovement>();
+        EnemyMovement = GameObject.FindWithTag("Enemy").GetComponent<EnemyMovement>();
 
         OnEnable();
     }
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
     // Win function 
     public void Win()
     {
-       // EnemyMovement.enemySound.Stop();
+        EnemyMovement.enemySound.Stop();
         audioSource.Stop();
         audioSource.PlayOneShot(winSound);
         Time.timeScale = 0;

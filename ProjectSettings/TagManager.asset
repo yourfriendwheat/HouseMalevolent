@@ -10,6 +10,7 @@ TagManager:
   - Wood
   - Road
   - Grass
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -52,7 +52,6 @@ public class Player_Collision : MonoBehaviour
         {
             GetBack.gameObject.SetActive(false);
             KeyReminder.gameObject.SetActive(false);
-
             GameObject.Find("GameManager").GetComponent<GameManager>().Win();
         }
     }

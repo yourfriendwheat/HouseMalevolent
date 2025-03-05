@@ -43,6 +43,9 @@ public class NewPlayerMovement : MonoBehaviour
 
     Vector2 mouseLook;
 
+    private bool playerwon;
+    private bool isPlayerAlive;
+
 
     public void Awake()
     {
@@ -55,6 +58,7 @@ public class NewPlayerMovement : MonoBehaviour
         crouch = GetComponent<PlayerCrouch>();
         move_OriginalSpeed = moveSpeed;
 
+
     }
 
     void Start()
@@ -65,14 +69,22 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (MaxBoost <= 0) MaxBoost = 100f; // Default value if not set
         Boost = MaxBoost;
+
     }
 
     void Update()
     {
+        playerwon = gameManager.PlayerWon;
+        isPlayerAlive = gameManager.isPlayerAlive;
+
         isGrounded = playerCollosion.isGrounded;
 
         ApplyMouseLook();
 
+        if (playerwon || !isPlayerAlive)
+        {
+            OnDisable();
+        }
     }
 
     void FixedUpdate()
