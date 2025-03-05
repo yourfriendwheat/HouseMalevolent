@@ -23,6 +23,7 @@ public class EnemyMovement : MonoBehaviour
     private bool ignore;
 
     private EnemyTrigger tiggerPlayer;
+    AudioSource enemySound;
 
     public GameManager GameManager;
 
@@ -31,6 +32,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        enemySound = GetComponent<AudioSource>();
+
         lose = false;
 
         // Initialize NavMeshAgent and find the player object
@@ -114,6 +117,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if(lose == true)
         {
+            enemySound.Stop();
             GameManager.gameOver();
         }
     }
