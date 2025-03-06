@@ -122,6 +122,8 @@ public class GameManager : MonoBehaviour
     // Function that unpauses the game
     public void Unpausegame()
     {
+        EnemyMovement.enemySound.Play();
+
         Time.timeScale = 1;
         gameText.gameObject.SetActive(true);
         PauseMenu.SetActive(false);
@@ -139,6 +141,8 @@ public class GameManager : MonoBehaviour
     // Function that pauses the game
     private void PauseGame()
     {
+        EnemyMovement.enemySound.Pause();
+
         Time.timeScale = 0;
         gameText.gameObject.SetActive(false);
         PauseMenu.SetActive(true);
