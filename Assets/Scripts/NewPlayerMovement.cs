@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.AI;
 
 
 public class NewPlayerMovement : MonoBehaviour
@@ -47,6 +48,9 @@ public class NewPlayerMovement : MonoBehaviour
     private bool isPlayerAlive;
 
 
+    //private Animator StupidPlayer;
+
+
     public void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -58,6 +62,7 @@ public class NewPlayerMovement : MonoBehaviour
         crouch = GetComponent<PlayerCrouch>();
         move_OriginalSpeed = moveSpeed;
 
+        //StupidPlayer = this.GetComponent<Animator>();
 
     }
 
@@ -85,6 +90,8 @@ public class NewPlayerMovement : MonoBehaviour
         {
             OnDisable();
         }
+
+        //UpdateAnimation();
     }
 
     void FixedUpdate()
@@ -257,5 +264,17 @@ public class NewPlayerMovement : MonoBehaviour
         recharge = null;
     }
 
-
+/*    void UpdateAnimation()
+    {
+        if (moveVector.magnitude > 0.1f)
+        {
+            StupidPlayer.SetBool("isWalking", !isChasing);
+            StupidPlayer.SetBool("idle", false);
+        }
+        else
+        {
+            StupidPlayer.SetBool("isWalking", false);
+            StupidPlayer.SetBool("idle", true);
+        }
+    }*/
 }
