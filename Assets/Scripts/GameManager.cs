@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
         GetBack.gameObject.SetActive(false);
         BeginningText.gameObject.SetActive(false);
 
-
         isPlayerAlive = false;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;

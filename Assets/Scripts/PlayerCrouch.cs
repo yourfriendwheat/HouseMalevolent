@@ -14,6 +14,10 @@ public class PlayerCrouch : MonoBehaviour
 
     private NewPlayerMovement NewPlayerMovement;
 
+    [SerializeField] private Transform headCheckPoint; // Empty GameObject placed at the top of the player's head
+    [SerializeField] private float headCheckRadius = 0.3f; // Radius for the head check
+    [SerializeField] private LayerMask obstacleLayer; // Layer to check for obstacles
+
     private void Awake()
     {
         inputSystem = new InputSystem();
@@ -38,12 +42,16 @@ public class PlayerCrouch : MonoBehaviour
 
     private void OnCrouchCanceled(InputAction.CallbackContext ctx)
     {
-        // Stand up when the key is released
-        if (isCrouching)
+        // Check if there's enough space to stand up
+        if (!Physics.CheckSphere(headCheckPoint.position, headCheckRadius, obstacleLayer))
         {
             isCrouching = false;
             transform.localScale = playerScale;
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        }
+        else
+        {
+            Debug.Log("Can't stand up! Something is above.");
         }
     }
 
@@ -51,8 +59,7 @@ public class PlayerCrouch : MonoBehaviour
     {
         inputSystem.OnGround.Disable();
         inputSystem.OnGround.Crouch.performed -= OnCrouchPerformed;
-        inputSystem.OnGround.Crouch.canceled -= OnCrouchPerformed;
-
+        inputSystem.OnGround.Crouch.canceled -= OnCrouchCanceled;
     }
 
     public void OnEnable()
