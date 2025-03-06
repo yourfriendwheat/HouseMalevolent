@@ -343,6 +343,12 @@ MonoBehaviour:
   isGrounded: 0
   getKey: 0
   ItemSound: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  KeyReminder: {fileID: 0}
+  GetBack: {fileID: 0}
+  BeginningText: {fileID: 0}
 --- !u!114 &6921635497164079054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +367,7 @@ MonoBehaviour:
   runSpeed: 4
   playerCollosion: {fileID: 4346211746316910323}
   playerCamera: {fileID: 5551902246991956813}
+  isRunning: 0
   isWalking: 0
   moveVector: {x: 0, y: 0, z: 0}
   gameManager: {fileID: 0}
@@ -413,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8186986260982050188}
-  AudioSource: {fileID: 0}
+  audioSource: {fileID: 0}
   grass: {fileID: 8300000, guid: e4fb335abdb6a1a4a9a397126135a9a5, type: 3}
   road: {fileID: 8300000, guid: e4fb335abdb6a1a4a9a397126135a9a5, type: 3}
   wood: {fileID: 8300000, guid: e4fb335abdb6a1a4a9a397126135a9a5, type: 3}
@@ -422,5 +429,5 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  runRate: 0.5
   stepRate: 0.5
-  Movement: {fileID: 0}

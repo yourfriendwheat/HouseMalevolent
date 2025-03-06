@@ -48,7 +48,7 @@ public class NewPlayerMovement : MonoBehaviour
     private bool isPlayerAlive;
 
 
-    //private Animator StupidPlayer;
+    private Animator StupidPlayer;
 
 
     public void Awake()
@@ -62,7 +62,7 @@ public class NewPlayerMovement : MonoBehaviour
         crouch = GetComponent<PlayerCrouch>();
         move_OriginalSpeed = moveSpeed;
 
-        //StupidPlayer = this.GetComponent<Animator>();
+        StupidPlayer = this.GetComponent<Animator>();
 
     }
 
@@ -91,7 +91,7 @@ public class NewPlayerMovement : MonoBehaviour
             OnDisable();
         }
 
-        //UpdateAnimation();
+        UpdateAnimation();
     }
 
     void FixedUpdate()
@@ -115,7 +115,7 @@ public class NewPlayerMovement : MonoBehaviour
         float mouseY = mouseLook.y * mouseSensitivity * Time.fixedDeltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 40f);
 
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
@@ -264,17 +264,17 @@ public class NewPlayerMovement : MonoBehaviour
         recharge = null;
     }
 
-/*    void UpdateAnimation()
+   void UpdateAnimation()
     {
         if (moveVector.magnitude > 0.1f)
         {
-            StupidPlayer.SetBool("isWalking", !isChasing);
-            StupidPlayer.SetBool("idle", false);
+            StupidPlayer.SetBool("isWalking", true);
+            StupidPlayer.SetBool("isStanding", false);
         }
         else
         {
             StupidPlayer.SetBool("isWalking", false);
-            StupidPlayer.SetBool("idle", true);
+            StupidPlayer.SetBool("isStanding", true);
         }
-    }*/
+    }
 }
